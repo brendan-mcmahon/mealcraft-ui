@@ -5,18 +5,20 @@ import RecipesPage from './pages/RecipesPage';
 import WeekPage from './pages/WeekPage';
 import "./App.scss";
 
-const baseUrl: string = (process.env.NODE_ENV as string) === "production" ? "/meal-ui" : "";
+const baseUrl: string = (process.env.NODE_ENV as string) === "production" ? "/mealcraft-ui" : "";
 const buildTime = import.meta.env.VITE_BUILD_TIME;
 
 const App: React.FC = () => {
+  console.log('build time', buildTime);
+  console.log(baseUrl)
   return (
     <Router basename={baseUrl}>
       <nav>
         <a href="/" >This Week</a>
         <a href="/recipes">Recipes</a>
         <a href="/ingredients">Ingredients</a>
-        <div className="build-time">Build time: {buildTime}</div>
       </nav>
+        <div className="build-time">v{buildTime}</div>
       <Routes>
         <Route path="/" element={<WeekPage />}>
         </Route>
