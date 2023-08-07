@@ -5,6 +5,7 @@ import "./IngredientsPage.scss";
 import { IngredientListItem } from './IngredientListItem';
 
 export default function IngredientsPage() {
+    const [isLoading, setIsLoading] = useState(true);
     const [isAdding, setIsAdding] = useState(false);
     const [ingredientsList, setIngredientsList] = useState<Ingredient[]>([]);
 
@@ -12,9 +13,11 @@ export default function IngredientsPage() {
         getAllIngredients()
             .then(data => {
                 setIngredientsList(data);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error('Error:', error);
+                setIsLoading(false);
             });
     }, []);
 
@@ -22,6 +25,19 @@ export default function IngredientsPage() {
         setIngredientsList([...ingredientsList, ingredient]);
         setIsAdding(false);
     };
+
+    let body = null;
+    if (isLoading) {
+        body = <div>Loading...</div>;
+    } else {
+        body = (
+            <div className="ingredients-list">
+                {ingredientsList.map((ingredient, index) => (
+                    <IngredientListItem key={index} ingredient={ingredient} />
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div id="Ingredients">
@@ -36,17 +52,7 @@ export default function IngredientsPage() {
                 onSaveComplete={handleNewIngredientSaved}
             />
 
-            <div className="ingredients-list">
-                {ingredientsList.map((ingredient, index) => (
-                    <IngredientListItem key={index} ingredient={ingredient}/>
-                ))}
-            </div>
-
-            {/* <div>
-                {ingredientsList.map((ingredient, index) => (
-                    <SwipeableItem key={index} text={ingredient.name} />
-                ))}
-            </div> */}
+            {body}
         </div>
     );
 }
