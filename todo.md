@@ -1,6 +1,9 @@
 - [ ] Search bar
 - [x] Use UUIDs for ingredient id
-- [ ] Quick button to set that status of an ingredient (probably a single button that cycles through the statuses)
+- [x] Quick button to set that status of an ingredient (probably a single button that cycles through the statuses)
 - [x] Tags for ingredients (e.g. "spice", "staple", "kids", "food", )
 - [ ] Styling
-- [ ] Make the "add ingredient" part a modal
+  - [ ] Desktop-friendly version
+  - [ ] Logo
+- [ ] Loading indicator on ingredients
+- [x] Make the "add ingredient" part a modal
