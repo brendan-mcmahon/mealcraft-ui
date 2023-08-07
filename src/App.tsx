@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import IngredientsPage from './pages/IngredientsPage';
 import RecipesPage from './pages/RecipesPage';
 import WeekPage from './pages/WeekPage';
@@ -14,9 +14,9 @@ const App: React.FC = () => {
   return (
     <Router basename={baseUrl}>
       <nav>
-        <a href="/" >This Week</a>
-        <a href="/recipes">Recipes</a>
-        <a href="/ingredients">Ingredients</a>
+        <Link to="/" >This Week</Link>
+        <Link to="/recipes">Recipes</Link>
+        <Link to="/ingredients">Ingredients</Link>
       </nav>
         <div className="build-time">v{buildTime}</div>
       <Routes>
