@@ -6,7 +6,6 @@
   "typecheck": "tsc --noEmit",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node prebuild.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
