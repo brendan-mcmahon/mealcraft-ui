@@ -4,6 +4,6 @@
 - [x] Tags for ingredients (e.g. "spice", "staple", "kids", "food", )
 - [ ] Styling
   - [ ] Desktop-friendly version
-  - [ ] Logo
-- [ ] Loading indicator on ingredients
+  - [x] Logo
+- [x] Loading indicator on ingredients
 - [x] Make the "add ingredient" part a modal

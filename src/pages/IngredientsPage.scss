@@ -101,31 +101,39 @@
     }
 
     .modal-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 48px 1fr 1fr;
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 48px 1fr 1fr;
 
-        grid-template-areas:
-            "input"
-            "tags"
-            "buttons";
+            grid-template-areas:
+                "input"
+                "tags"
+                "buttons";
 
-        .ingredient-input {
-            grid-area: input;
-            margin-bottom: 8px;
-        }
+            .ingredient-input {
+                grid-area: input;
+                margin-bottom: 8px;
+            }
 
-        .tags {
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
+            .tags {
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
 
-        .buttons {
-            grid-area: buttons;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            .buttons {
+                grid-area: buttons;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                button {
+                    background-color: var(--cool-green);
+                    font-size: 28px;
+                    font-family: var(--primary-font);
+                }
+            }
         }
     }
 }
