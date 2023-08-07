@@ -5,9 +5,11 @@ import RecipesPage from './pages/RecipesPage';
 import WeekPage from './pages/WeekPage';
 import "./App.scss";
 
+const baseUrl: string = (process.env.NODE_ENV as string) === "production" ? "/meal-ui" : "";
+
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename={baseUrl}>
       <nav>
         <a href="/" >This Week</a>
         <a href="/recipes">Recipes</a>
