@@ -1,0 +1,80 @@
+.modal-overlay {
+    opacity: 0; // By default, the modal is hidden
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; // Ignore clicks when the modal is hidden
+
+    .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        max-width: 500px;
+        padding: 8px 16px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        transform: translate(-50%, -150%);
+        transition: transform 0.2s ease-in-out;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+
+            h2 {
+                color: #333333;
+            }
+
+            button {
+                background-color: transparent;
+                color: #333333;
+                border: none;
+                font-size: 1.5em;
+                cursor: pointer;
+                transition: color 0.3s;
+                padding: 0;
+
+                &:hover {
+                    color: #000000;
+                }
+            }
+        }
+
+        p {
+            margin: 10px 0;
+            color: #666666;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4abdac;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: darken(#4abdac, 10%);
+            }
+        }
+    }
+
+    &.show {
+        opacity: 1; // Show the modal when the "show" class is added
+        pointer-events: auto; // Enable clicks when the modal is shown
+
+        .modal {
+            transform: translate(-50%, -50%);
+        }
+    }
+}

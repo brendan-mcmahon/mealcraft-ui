@@ -1,0 +1,71 @@
+h1, h2, h3 {
+    margin: 0;
+    font-weight: bold;
+    line-height: 2em;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    height: 60px;
+    background-color: var(--cool-green);
+    color: #fff;
+    font-family: var(--primary-font);
+    font-size: 24px;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.page-title {
+    margin: 0 12px;
+}
+
+.chip {
+    margin: 5px;
+    cursor: pointer;
+    font-family: var(--primary-font);
+
+    .chip-checkbox {
+        display: none; /* Hide the actual checkbox */
+    }
+
+    .chip-text {
+        color: var(--cool-grey); /* Text color when not selected */
+        padding: 0px 12px;
+        border: 2px solid var(--cool-green);
+        border-radius: 20px;
+        transition: all 0.3s;
+        display: flex;
+        color: var(--cool-green);
+        font-size: 20px;
+    }
+
+    /* Style when the checkbox is checked */
+    .chip-checkbox:checked + .chip-text {
+        color: #fff;
+        background-color: var(--cool-green);
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+}
+
+// how do you target inputs with a type of text?
+input[type="text"] {
+    border: solid 2px var(--cool-green);
+    font-family: var(--primary-font);
+    font-size: 28px;
+    padding: 4px;
+    line-height: 2em;
+}

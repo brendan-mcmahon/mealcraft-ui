@@ -1,0 +1,131 @@
+#Ingredients {
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 0px 12px;
+
+        button {
+            background-color: transparent;
+            color: var(--cool-green);
+            border: solid 2px var(--cool-green);
+            border-radius: 50px;
+            height: 50px;
+            width: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+    }
+
+    .ingredients-list {
+        list-style: none;
+        font-size: 32px;
+        padding: 0px 12px;
+
+        .list-item {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-gap: 8px;
+            grid-template-areas:
+                "name status"
+                "tags tags";
+            // background-color: var(--cool-green);
+            padding: 8px;
+            align-items: center;
+            border: solid grey 3px;
+            margin-top: 8px;
+
+            .ingredient-tags {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 50%;
+                font-size: 24px;
+            }
+
+            .status {
+                grid-area: status;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                justify-self: flex-end;
+                font-size: 20px;
+                border-radius: 50px;
+                padding: 8px;
+
+                &.Plenty {
+                    background-color: var(--cool-green);
+                }
+
+                &.Out {
+                    background-color: var(--cool-red);
+                    color: black;
+                }
+
+                &.Low {
+                    background-color: var(--cool-yellow);
+                    color: black;
+                }
+
+                &.Ordered {
+                    background-color: var(--cool-blue);
+                    color: black;
+                }
+            }
+
+            .tags {
+                grid-area: tags;
+                display: flex;
+                flex-wrap: wrap;
+
+                .tag {
+                    padding: 0px 12px;
+                    border: 2px solid var(--cool-blue);
+                    border-radius: 20px;
+                    transition: all 0.3s;
+                    display: flex;
+                    color: var(--cool-blue);
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .modal-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 48px 1fr 1fr;
+
+        grid-template-areas:
+            "input"
+            "tags"
+            "buttons";
+
+        .ingredient-input {
+            grid-area: input;
+            margin-bottom: 8px;
+        }
+
+        .tags {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .buttons {
+            grid-area: buttons;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+}
