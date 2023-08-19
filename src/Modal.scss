@@ -1,5 +1,5 @@
 .modal-overlay {
-    opacity: 0; // By default, the modal is hidden
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none; // Ignore clicks when the modal is hidden
+    pointer-events: none;
 
     .modal {
         position: absolute;
@@ -16,7 +16,6 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80%;
-        height: 80%;
         max-width: 500px;
         padding: 8px 16px;
         background-color: #ffffff;
@@ -70,8 +69,8 @@
     }
 
     &.show {
-        opacity: 1; // Show the modal when the "show" class is added
-        pointer-events: auto; // Enable clicks when the modal is shown
+        opacity: 1;
+        pointer-events: auto;
 
         .modal {
             transform: translate(-50%, -50%);

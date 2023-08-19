@@ -1,26 +1,81 @@
 #Ingredients {
     .page-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding: 0px 12px;
+        margin: 12px 12px 20px 12px;
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 12px;
 
-        button {
-            background-color: transparent;
-            color: var(--cool-green);
-            border: solid 2px var(--cool-green);
-            border-radius: 50px;
-            height: 50px;
-            width: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
+            
+
+            h1 {
+                font-size: 48px;
+                margin: 0;
+            }
         }
 
-        h1 {
-            font-size: 48px;
-            margin: 0;
+        .search-bar {
+            margin-bottom: 16px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            input {
+                width: 80%;
+            }
+            button {
+                background-color: transparent;
+                color: var(--cool-green);
+                border: solid 2px var(--cool-green);
+                border-radius: 50px;
+                height: 50px;
+                width: 50px;
+                font-size: 24px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+        }
+
+        .filters {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+
+            .filter-row {
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                }
+            }
+
+            .select-filters {
+                display: flex;
+                justify-content: space-evenly;
+                width: 100%;
+            }
+
+            svg {
+                font-size: 28px;
+            }
+
+            select {
+                margin: 4px;
+                background-color: transparent;
+                color: white;
+                padding: 4px;
+                font-size: 20px;
+            }
+            option {
+                background-color: var(--cool-green);
+                color: white;
+            }
+
+            .tag-filters {
+                display: flex;
+                flex-wrap: wrap;
+            }
         }
     }
 
@@ -104,16 +159,64 @@
         form {
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 48px 1fr 1fr;
+            grid-template-rows: auto auto 1fr 1fr;
 
             grid-template-areas:
                 "input"
+                "type"
                 "tags"
                 "buttons";
 
-            .ingredient-input {
+            .name {
                 grid-area: input;
                 margin-bottom: 8px;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                input {
+                    width: 100%;
+                }
+                label {
+                    color: black;
+                    line-height: 1.5em;
+                    margin-bottom: 2px;
+                }
+
+            }
+
+
+            .type {
+                grid-area: type;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+
+                label {
+                    color: black;
+                    line-height: 1.5em;
+                    margin-bottom: 2px;
+                }
+
+                select {
+                    width: 100%;
+                }
+
+                .type-button {
+                    background-color: transparent;
+                    border: solid 2px var(--cool-green);
+                    border-radius: 50px;
+                    height: 50px;
+                    width: 50px;
+                    font-size: 24px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    margin-right: 8px;
+                }
+
+                .selected {
+                    background-color: var(--cool-green);
+                    color: white;
+                }
             }
 
             .tags {
@@ -132,6 +235,11 @@
                     background-color: var(--cool-green);
                     font-size: 28px;
                     font-family: var(--primary-font);
+                    margin-left:16px;
+
+                    &.delete-button {
+                        background-color: var(--cool-red);
+                    }
                 }
             }
         }

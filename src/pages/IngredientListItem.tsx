@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSwipeable } from "react-swipeable";
-import { Ingredient, IngredientStatus, updateIngredient } from "../api";
+import { updateIngredient } from "../api";
+import { Ingredient, IngredientStatus } from '../Ingredient';
 
 type IngredientListItemProps = {
   ingredient: Ingredient;
-  // ... additional props
+  onClick: (ingredient: Ingredient) => void;
 };
 
 export const IngredientListItem: React.FC<IngredientListItemProps> = (props: IngredientListItemProps) => {
   const [status, setStatus] = useState<IngredientStatus>(props.ingredient.status);
   const totalStatuses = Object.keys(IngredientStatus).length / 2;
+
+  useEffect(() => {
+    setStatus(props.ingredient.status);
+  }, [props.ingredient]);
 
   const onSwipedLeft = async () => await onSwiped(status + 1);
 
@@ -17,10 +22,7 @@ export const IngredientListItem: React.FC<IngredientListItemProps> = (props: Ing
 
   const onSwiped = async (direction: number) => {
     const nextStatus = direction % totalStatuses;
-    await updateIngredient({ ...props.ingredient, status: nextStatus })
-      .then((data) => {
-        console.log(data);
-      });
+    await updateIngredient({ ...props.ingredient, status: nextStatus });
 
     setStatus(nextStatus as IngredientStatus);
   }
@@ -32,7 +34,7 @@ export const IngredientListItem: React.FC<IngredientListItemProps> = (props: Ing
   });
 
   return (
-    <div className={`list-item`} {...handlers}>
+    <div className={`list-item`} {...handlers} onClick={() => props.onClick(props.ingredient)}>
       {props.ingredient.name}
 
       <div className={`status ${IngredientStatus[status]}`}>{IngredientStatus[status]}</div>

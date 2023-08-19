@@ -23,5 +23,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     // Your typescript-specific rules here
+    // turn off exhaustive-deps rule
+    'react-hooks/exhaustive-deps': 'off',
   },
 }
