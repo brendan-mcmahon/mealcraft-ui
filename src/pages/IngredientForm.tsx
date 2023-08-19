@@ -79,6 +79,7 @@ export function IngredientForm(props: IngredientFormProps) {
             ...ingredient,
             ingredientId: ingredient?.ingredientId,
             status: ingredient?.status,
+            statusDate: ingredient?.statusDate,
             type: ingredientType as IngredientType,
             name: ingredientName,
             tags: _tags
