@@ -10,6 +10,10 @@
   - [x] Saving state
 - [x] Clear button for search bar
 - [x] Collapse Filters
+- [ ] swiping is too buggy
+- go button for search to collapse the keyboard
+- sort by last updated status
+
 
 
 # Meal Planning
