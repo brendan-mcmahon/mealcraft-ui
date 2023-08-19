@@ -13,8 +13,8 @@
 - [ ] swiping is too buggy
 - go button for search to collapse the keyboard
 - sort by last updated status
-
-
+- expiration dates
+- status dates are not working. check in aws to see if they're being saved 
 
 # Meal Planning
 - [ ] Would be cool to have a weather API to quickly see if we can cook out or if we should be eating chili or something like that. Extremely minor, but would be cool.
