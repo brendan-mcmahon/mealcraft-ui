@@ -1,6 +1,6 @@
 import React from 'react';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import './Modal.scss'; // Assuming you have the SCSS file from the previous example
+import './Modal.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type ModalProps = {

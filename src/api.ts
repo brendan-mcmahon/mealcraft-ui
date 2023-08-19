@@ -6,7 +6,7 @@ const API_URL = "https://ytkjy0j5al.execute-api.us-east-2.amazonaws.com/prod";
 export function getIngredient(ingredientId: string): Promise<Ingredient> {
   return axios
     .get<Ingredient>(`${API_URL}/ingredients?ingredientId=${ingredientId}`)
-    .then((response: AxiosResponse<Ingredient>) => response.data)
+    .then((response: AxiosResponse<Ingredient>) => mapIngredient(response.data))
     .catch((error) => {
       throw error;
     });
@@ -15,7 +15,7 @@ export function getIngredient(ingredientId: string): Promise<Ingredient> {
 export function getAllIngredients(): Promise<Ingredient[]> {
   return axios
     .get<Ingredient[]>(`${API_URL}/ingredients/`)
-    .then((response: AxiosResponse<Ingredient[]>) => response.data)
+    .then((response: AxiosResponse<Ingredient[]>) => response.data.map(mapIngredient))
     .catch((error) => {
       throw error;
     });
@@ -26,7 +26,7 @@ export function updateIngredient(ingredient: Ingredient): Promise<Ingredient> {
 
   return axios
     .put<Ingredient>(`${API_URL}/ingredients`, ingredient)
-    .then((response: AxiosResponse<Ingredient>) => response.data)
+    .then((response: AxiosResponse<Ingredient>) => mapIngredient(response.data))
     .catch((error) => {
       throw error;
     });
@@ -37,7 +37,7 @@ export function saveIngredient(ingredient: Ingredient): Promise<Ingredient> {
 
   return axios
     .post<Ingredient>(`${API_URL}/ingredients`, ingredient)
-    .then((response: AxiosResponse<Ingredient>) => response.data)
+    .then((response: AxiosResponse<Ingredient>) => mapIngredient(response.data))
     .catch((error) => {
       throw error;
     });
@@ -51,4 +51,11 @@ export function deleteIngredient(ingredientId: string): Promise<void> {
     .catch((error) => {
       throw error;
     });
+}
+
+const mapIngredient = (ingredient: Ingredient) => {
+  return {
+    ...ingredient,
+    statusDate: ingredient.statusDate ? new Date(ingredient.statusDate) : null,
+  };
 }

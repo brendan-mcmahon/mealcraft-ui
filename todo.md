@@ -3,12 +3,13 @@
 - [ ] Styling
   - [ ] Desktop-friendly version
   - [x] Logo
-- [ ] Add timestamp and friendly UI for when the last time a status was updated
+- [x] Add timestamp and friendly UI for when the last time a status was updated
 - [x] Editing an ingredient is rough
   - [x] Fix the title
   - [x] Fix the tags not highlighting (issue with using controlled vs managed components)
   - [x] Saving state
-  - [ ] 
+- [x] Clear button for search bar
+- [x] Collapse Filters
 
 
 # Meal Planning

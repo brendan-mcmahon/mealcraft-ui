@@ -6,6 +6,8 @@ import "./IngredientsPage.scss";
 import { IngredientListItem } from './IngredientListItem';
 import { IngredientFilters } from './IngredientFilters';
 import Loading from '../Loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function IngredientsPage() {
@@ -98,21 +100,28 @@ export default function IngredientsPage() {
         header = (
             <div className="page-header">
                 <div className="search-bar">
-                    <input type="text" placeholder="Search..." onChange={onSearchTermChanged} />
-                    <button onClick={() => setIsEditing(true)}>+</button>
+                    <div className="search-wrapper">
+                        <input type="text" placeholder="Search..." value={searchTerm} onChange={onSearchTermChanged} />
+                        {searchTerm && <button className="icon-button clear-button" onClick={() => setSearchTerm('')}><FontAwesomeIcon icon={faXmark} /></button>}
+                    </div>
+                    <button className="icon-button add-button" onClick={() => setIsEditing(true)}><FontAwesomeIcon icon={faPlus} /></button>
                 </div>
                 <IngredientFilters
                     toggleFilter={toggleFilter}
                     chooseType={chooseType}
                     chooseStatus={chooseStatus} />
             </div>);
-        body = (
+        body = displayIngredients.length > 0 ? (
             <div className="ingredients-list">
                 {displayIngredients.map((ingredient, index) => (
                     <IngredientListItem key={index} ingredient={ingredient} onClick={selectIngredientToEdit} />
                 ))}
             </div>
-        );
+        ) : (
+            <div className="empty-state">
+                <span>No grocery items found!</span>
+            </div>
+        )
     }
 
     return (

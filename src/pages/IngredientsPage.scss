@@ -25,18 +25,32 @@
                 margin: 0;
             }
         }
-
         .search-bar {
             margin-bottom: 16px;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            input {
+
+            .search-wrapper {
+                position: relative;
+                display: flex;
+                align-items: center;
                 width: 80%;
+
+                input {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .clear-button {
+                    position: absolute;
+                    right: 5px;
+                    font-size: 14px;
+                }
             }
-            button {
-                background-color: transparent;
+
+            .add-button {
                 color: var(--cool-green);
                 border: solid 2px var(--cool-green);
                 border-radius: 50px;
@@ -52,6 +66,25 @@
             display: flex;
             align-items: flex-start;
             flex-direction: column;
+
+            .filter-button {
+                font-size: 20px;
+                color: var(--cool-grey);
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                margin: 4px 0px;
+
+                span {
+                    font-family: var(--primary-font);
+                }
+
+                svg {
+                    margin-left: 8px;
+                    font-size: 20px;
+                }
+            }
 
             .filter-row {
                 label {
@@ -72,7 +105,7 @@
             }
 
             select {
-                margin: 4px;
+                margin: 4px 8px 0 0;
                 background-color: transparent;
                 color: white;
                 padding: 4px;
@@ -88,6 +121,16 @@
                 flex-wrap: wrap;
             }
         }
+    }
+
+    .empty-state {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: var(--cool-grey);
+        font-size: 32px;
     }
 
     .ingredients-list {

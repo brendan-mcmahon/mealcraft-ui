@@ -1,9 +1,9 @@
 import { IngredientStatus, IngredientType } from '../Ingredient';
 import { Tag } from './Tag';
 import { ingredientTags } from '../ingredientTags';
-import { ChangeEvent } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { ChangeEvent, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 type IngredientFiltersProps = {
     chooseType: (e: ChangeEvent<HTMLSelectElement>) => void;
@@ -12,10 +12,9 @@ type IngredientFiltersProps = {
 };
 
 export function IngredientFilters(props: IngredientFiltersProps) {
-    return (<div className="filters">
-        {
-            /* <FontAwesomeIcon icon={faFilter} /> */
-        }
+    const [showFilters, setShowFilters] = useState(false);
+
+    const filters = <>
         <div className="filter-row select-filters">
             <label>
                 Item Type
@@ -42,6 +41,11 @@ export function IngredientFilters(props: IngredientFiltersProps) {
         <div className=" filter-row tag-filters">
             {ingredientTags.map((tag, index) => <Tag key={index} name={tag} onSelect={props.toggleFilter} />)}
         </div>
-
+    </>;
+    return (<div className="filters">
+        <button className="icon-button filter-button" onClick={() => setShowFilters(!showFilters)}>
+            <span>Filters</span><FontAwesomeIcon icon={showFilters ? faCaretDown : faCaretUp} />
+        </button>
+        {showFilters && filters}
     </div>);
 }
