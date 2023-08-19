@@ -1,24 +1,14 @@
 # Ingredients
-- [ ] Search bar
-- [x] Use UUIDs for ingredient id
-- [x] Quick button to set that status of an ingredient (probably a single button that cycles through the statuses)
-- [x] Tags for ingredients (e.g. "spice", "staple", "kids", "food", )
+- [x] Loading state
 - [ ] Styling
   - [ ] Desktop-friendly version
   - [x] Logo
-- [x] Loading indicator on ingredients
-- [x] Make the "add ingredient" part a modal
 - [ ] Add timestamp and friendly UI for when the last time a status was updated
-- [ ] Editing an ingredient is rough
-  - [ ] Fix the title
-  - [ ] Fix the tags not highlighting (issue with using controlled vs managed components)
-  - [ ] Saving state
-- [ ] Filtering
-  - [ ] Add search bar
-- [ ] Deleting doesn't work, huh?
-- [ ] Barcode scanner? Could that be useful somehow?
-- [ ] Remove "Ingredients" title and just highlight the nav bar instead
-  - [ ] Move the Plus button somewhere else
+- [x] Editing an ingredient is rough
+  - [x] Fix the title
+  - [x] Fix the tags not highlighting (issue with using controlled vs managed components)
+  - [x] Saving state
+  - [ ] 
 
 
 # Meal Planning

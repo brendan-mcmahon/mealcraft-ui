@@ -6,6 +6,7 @@ import { Ingredient } from '../Ingredient';
 import Modal from "../Modal";
 import { Tag } from './Tag';
 import { ingredientTags } from '../ingredientTags';
+import Loading from '../Loading';
 
 type IngredientFormProps = {
     isOpen: boolean;
@@ -20,6 +21,7 @@ export function IngredientForm(props: IngredientFormProps) {
     const [ingredientType, setIngredientType] = useState<number>(props.ingredient?.type || 0);
     const [tags, setTags] = useState<string[]>(props.ingredient?.tags || []);
     const input = useRef<HTMLInputElement>(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
         if (props.isOpen && input.current) {
@@ -40,6 +42,8 @@ export function IngredientForm(props: IngredientFormProps) {
     const handleSave = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        setIsProcessing(true);
+
         if (props.ingredient) {
             saveEditIngredient(props.ingredient);
         } else {
@@ -53,15 +57,20 @@ export function IngredientForm(props: IngredientFormProps) {
             ingredientId: uuidv4(),
             type: ingredientType as IngredientType,
             tags: tags,
-            status: IngredientStatus.Plenty
+            status: IngredientStatus.Plenty,
+            statusDate: null
         };
 
         saveIngredient(newIngredient)
             .then(() => {
                 props.onSaveComplete(newIngredient);
+                setIsProcessing(false);
                 setIngredientName('');
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                setIsProcessing(false);
+                console.error(error);
+            });
     }
 
     function saveEditIngredient(ingredient: Ingredient) {
@@ -78,8 +87,12 @@ export function IngredientForm(props: IngredientFormProps) {
             .then(() => {
                 props.onSaveComplete(updatedIngredient);
                 setIngredientName('');
+                setIsProcessing(false);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                setIsProcessing(false);
+                console.error(error);
+            });
         return;
     }
 
@@ -87,6 +100,7 @@ export function IngredientForm(props: IngredientFormProps) {
         if (props.ingredient) {
             deleteIngredient(props.ingredient.ingredientId)
                 .then(() => {
+                    console.log('deleted, now calling onDelete');
                     props.onDelete(props.ingredient as Ingredient);
                     setIngredientName('');
                 })
@@ -95,6 +109,7 @@ export function IngredientForm(props: IngredientFormProps) {
     }
 
     return (<Modal title={props.ingredient?.name || "New Ingredient"} isOpen={props.isOpen} onClose={props.handleCancel}>
+        {isProcessing && <div className="loading"><Loading /><span>Saving...</span></div>}
         <form onSubmit={handleSave}>
             <div className="form-group name">
                 <label>Name</label>
@@ -125,10 +140,10 @@ export function IngredientForm(props: IngredientFormProps) {
                     <Tag key={index} name={tag} onSelect={addTag} selected={props.ingredient?.tags.includes(tag)} />
                 ))}
             </div>
-            
+
             <div className="buttons">
-                {!!props.ingredient && <button className="delete-button" onClick={deleteThis}>Delete</button>}
-                <button type="submit">Save</button>
+                {!!props.ingredient && <button disabled={isProcessing} className="delete-button" onClick={deleteThis}>Delete</button>}
+                <button disabled={isProcessing} type="submit">Save</button>
             </div>
         </form>
     </Modal>);

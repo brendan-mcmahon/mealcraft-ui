@@ -5,6 +5,7 @@ import { IngredientForm } from './IngredientForm';
 import "./IngredientsPage.scss";
 import { IngredientListItem } from './IngredientListItem';
 import { IngredientFilters } from './IngredientFilters';
+import Loading from '../Loading';
 
 
 export default function IngredientsPage() {
@@ -64,19 +65,7 @@ export default function IngredientsPage() {
         }
     };
 
-    let body = null;
-    if (isLoading) {
-        body = <div>Loading...</div>;
-    } else {
-        body = (
-            <div className="ingredients-list">
-                {displayIngredients.map((ingredient, index) => (
-                    <IngredientListItem key={index} ingredient={ingredient} onClick={selectIngredientToEdit} />
-                ))}
-            </div>
-        );
-    }
-
+    
     const chooseType = (e: ChangeEvent<HTMLSelectElement>) => {
         const type = parseInt(e.target.value);
         if (type === -1) {
@@ -100,8 +89,13 @@ export default function IngredientsPage() {
         setSearchTerm(searchTerm);
     };
 
-    return (
-        <div id="Ingredients">
+
+    let header = null;
+    let body = null;
+    if (isLoading) {
+        body = <div className="loading-state"><Loading /><span>Loading Groceries...</span></div>;
+    } else {
+        header = (
             <div className="page-header">
                 <div className="search-bar">
                     <input type="text" placeholder="Search..." onChange={onSearchTermChanged} />
@@ -110,10 +104,20 @@ export default function IngredientsPage() {
                 <IngredientFilters
                     toggleFilter={toggleFilter}
                     chooseType={chooseType}
-                    chooseStatus={chooseStatus}
-                />
+                    chooseStatus={chooseStatus} />
+            </div>);
+        body = (
+            <div className="ingredients-list">
+                {displayIngredients.map((ingredient, index) => (
+                    <IngredientListItem key={index} ingredient={ingredient} onClick={selectIngredientToEdit} />
+                ))}
             </div>
+        );
+    }
 
+    return (
+        <div id="Ingredients">
+            {header}
             <IngredientForm
                 isOpen={isEditing}
                 handleCancel={() => { setIsEditing(false); setSelectedIngredient(null); }}
@@ -139,7 +143,7 @@ export default function IngredientsPage() {
             newDisplay = newDisplay.filter(ingredient => ingredient.type === typeFilter);
         }
         if (searchTerm !== '') {
-            newDisplay = newDisplay.filter(ingredient => 
+            newDisplay = newDisplay.filter(ingredient =>
                 ingredient.name.toLowerCase().includes(searchTerm.toLowerCase()));
         }
         setDisplayIngredients(newDisplay);

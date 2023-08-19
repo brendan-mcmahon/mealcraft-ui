@@ -23,6 +23,7 @@
     --cool-green: #00a632;
 
     --primary-font: 'Edu SA Beginner', sans-serif;
+    height: 100vh;
 
 }
 
@@ -31,6 +32,11 @@ body {
     color: var(--cool-grey); /* dark gray text color */
     font-family: var(--primary-font);
     margin:0;
+    height: 100vh;
+
+    #root {
+      height: 100%;
+    }
   }
 
   h1, h2, a {

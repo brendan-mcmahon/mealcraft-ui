@@ -1,4 +1,17 @@
 #Ingredients {
+    height: 100%;
+
+    .loading-state {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: var(--cool-grey);
+        font-size: 32px;
+    }
+
     .page-header {
         margin: 12px 12px 20px 12px;
         .title {
@@ -6,8 +19,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 0px 12px;
-
-            
 
             h1 {
                 font-size: 48px;
@@ -107,36 +118,46 @@
                 font-size: 24px;
             }
 
-            .status {
+            .status-container {
                 grid-area: status;
                 display: flex;
-                justify-content: flex-end;
+                flex-direction: column;
                 align-items: center;
-                justify-self: flex-end;
-                font-size: 20px;
-                border-radius: 50px;
-                padding: 8px;
+                .status {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    justify-self: flex-end;
+                    font-size: 20px;
+                    border-radius: 50px;
+                    padding: 8px;
 
-                &.Plenty {
-                    background-color: var(--cool-green);
+                    &.Plenty {
+                        background-color: var(--cool-green);
+                    }
+
+                    &.Out {
+                        background-color: var(--cool-red);
+                        color: black;
+                    }
+
+                    &.Low {
+                        background-color: var(--cool-yellow);
+                        color: black;
+                    }
+
+                    &.Ordered {
+                        background-color: var(--cool-blue);
+                        color: black;
+                    }
                 }
 
-                &.Out {
-                    background-color: var(--cool-red);
-                    color: black;
-                }
-
-                &.Low {
-                    background-color: var(--cool-yellow);
-                    color: black;
-                }
-
-                &.Ordered {
-                    background-color: var(--cool-blue);
-                    color: black;
+                .status-date {
+                    font-size: 12px;
+                    color: var(--cool-grey);
+                    text-align: center;
                 }
             }
-
             .tags {
                 grid-area: tags;
                 display: flex;
@@ -156,7 +177,32 @@
     }
 
     .modal-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "body";
+
+        .loading {
+            grid-area: body;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: black;
+            font-size: 32px;
+
+            #loading {
+                #hammer,
+                #fork {
+                    fill: var(--cool-green);
+                }
+            }
+        }
+
         form {
+            grid-area: body;
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: auto auto 1fr 1fr;
@@ -181,9 +227,7 @@
                     line-height: 1.5em;
                     margin-bottom: 2px;
                 }
-
             }
-
 
             .type {
                 grid-area: type;
@@ -235,7 +279,7 @@
                     background-color: var(--cool-green);
                     font-size: 28px;
                     font-family: var(--primary-font);
-                    margin-left:16px;
+                    margin-left: 16px;
 
                     &.delete-button {
                         background-color: var(--cool-red);

@@ -18,4 +18,5 @@ export interface Ingredient {
   tags: string[];
   status: IngredientStatus;
   type: IngredientType;
+  statusDate: Date | null;
 }
