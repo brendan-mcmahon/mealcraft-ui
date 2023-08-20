@@ -10,11 +10,39 @@
   - [x] Saving state
 - [x] Clear button for search bar
 - [x] Collapse Filters
-- [ ] swiping is too buggy
-- go button for search to collapse the keyboard
-- sort by last updated status
-- expiration dates
-- status dates are not working. check in aws to see if they're being saved 
+- [x] Swiping is too buggy, think of another way
+- [ ] Go button for search to collapse the keyboard
+- [ ] Sort by last updated status
+- [ ] Expiration dates
+- [ ] Status dates are not working. check in aws to see if they're being saved 
+- [ ] Add ability to create new tags
+  
+# Recipes
+* Structure of a recipe:
+  * Id
+  * Name
+  * Description
+  * Ingredients
+    * Id
+    * Name
+    * Quantity
+    * Unit
+  * Steps
+    * Id
+    * Description
+    * Time
+  * Tags
+    * Id
+    * Name
+  * External Link
+  * Weight Watchers Points
+  * List of dates this was scheduled for
+  * Star rating
+* Views:
+  * List
+  * Create
+  * Edit
+  
 
 # Meal Planning
 - [ ] Would be cool to have a weather API to quickly see if we can cook out or if we should be eating chili or something like that. Extremely minor, but would be cool.

@@ -67,22 +67,61 @@
             align-items: flex-start;
             flex-direction: column;
 
-            .filter-button {
-                font-size: 20px;
-                color: var(--cool-grey);
+            .filter-header {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
-                cursor: pointer;
-                transition: all 0.3s;
-                margin: 4px 0px;
+                width: 100%;
 
-                span {
-                    font-family: var(--primary-font);
+                .filter-button {
+                    font-size: 20px;
+                    color: var(--cool-grey);
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    margin: 4px 0px;
+
+                    span {
+                        font-family: var(--primary-font);
+                    }
+
+                    svg {
+                        margin-left: 8px;
+                        font-size: 20px;
+                    }
                 }
 
-                svg {
-                    margin-left: 8px;
-                    font-size: 20px;
+                .sort-by {
+                    display: flex;
+                    align-items: center;
+
+                    label {
+                        margin-right: 4px;
+                    }
+
+                    select {
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                        background-color: transparent;
+                        padding: 4px;
+                        font-size: 16px;
+                        color: var(--cool-grey);
+                        margin: 0;
+                    }
+                    option {
+                        background-color: var(--cool-green);
+                        color: white;
+                    }
+
+                    .sort-direction {
+                        color: var(--cool-grey);
+                    }
+
+                    svg {
+                        font-size: 20px;
+                    }
                 }
             }
 
@@ -144,13 +183,33 @@
             grid-template-rows: 1fr 1fr;
             grid-gap: 8px;
             grid-template-areas:
-                "name status"
-                "tags tags";
+                "name edit"
+                "tags status";
             // background-color: var(--cool-green);
             padding: 8px;
             align-items: center;
             border: solid grey 3px;
             margin-top: 8px;
+
+            .edit-button {
+                grid-area: edit;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-direction: column;
+                font-size: 16px;
+                color: var(--cool-grey);
+                cursor: pointer;
+                transition: all 0.3s;
+
+                svg {
+                    font-size: 24px;
+                }
+
+                &:hover {
+                    color: var(--cool-green);
+                }
+            }
 
             .ingredient-tags {
                 display: flex;

@@ -16,6 +16,8 @@ export default function IngredientsPage() {
     const [selectedIngredient, setSelectedIngredient] = useState<Ingredient | null>(null);
     const [ingredientsList, setIngredientsList] = useState<Ingredient[]>([]);
     const [displayIngredients, setDisplayIngredients] = useState<Ingredient[]>([]);
+    const [sortBy, setSortBy] = useState<string>('name');
+    const [sortDirection, setSortDirection] = useState<number>(1); // make this 1 or -1 instead of a string
     const [filters, setFilters] = useState<string[]>([]);
     const [statusFilter, setStatusFilter] = useState<number>(-1);
     const [typeFilter, setTypeFilter] = useState<number>(-1);
@@ -34,7 +36,8 @@ export default function IngredientsPage() {
             });
     }, []);
 
-    useEffect(() => filterList(), [filters, statusFilter, typeFilter, ingredientsList, searchTerm]);
+    useEffect(() => filterList(),
+        [filters, statusFilter, typeFilter, ingredientsList, searchTerm, sortBy, sortDirection]);
 
     const handleNewIngredientSaved = (ingredient: Ingredient) => {
         const index = ingredientsList.findIndex((t) => t.ingredientId === ingredient.ingredientId);
@@ -67,7 +70,7 @@ export default function IngredientsPage() {
         }
     };
 
-    
+
     const chooseType = (e: ChangeEvent<HTMLSelectElement>) => {
         const type = parseInt(e.target.value);
         if (type === -1) {
@@ -109,7 +112,14 @@ export default function IngredientsPage() {
                 <IngredientFilters
                     toggleFilter={toggleFilter}
                     chooseType={chooseType}
-                    chooseStatus={chooseStatus} />
+                    chooseStatus={chooseStatus}
+                    sortBy={sortBy}
+                    setSortBy={setSortBy}
+                    sortDirection={sortDirection}
+                    setSortDirection={setSortDirection}
+                />
+
+
             </div>);
         body = displayIngredients.length > 0 ? (
             <div className="ingredients-list">
@@ -155,6 +165,29 @@ export default function IngredientsPage() {
             newDisplay = newDisplay.filter(ingredient =>
                 ingredient.name.toLowerCase().includes(searchTerm.toLowerCase()));
         }
+
+        sortItems(newDisplay);
+
         setDisplayIngredients(newDisplay);
+    }
+
+    function sortItems(newDisplay: Ingredient[]) {
+        switch (sortBy) {
+            case 'name':
+                newDisplay.sort((a, b) => sortDirection * a.name.localeCompare(b.name));
+                break;
+            case 'status-date':
+                newDisplay.sort((a, b) => {
+                    if (a.statusDate === null) return sortDirection;
+                    if (b.statusDate === null) return -sortDirection;
+                    return sortDirection * (new Date(a.statusDate).getTime() - new Date(b.statusDate).getTime());
+                });
+                break;
+            case 'type':
+                newDisplay.sort((a, b) => a.type - b.type);
+                break;
+            default:
+                break;
+        }
     }
 }

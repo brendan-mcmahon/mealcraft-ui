@@ -6,6 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 type IngredientFiltersProps = {
+    sortBy: string;
+    setSortBy: (value: string) => void;
+    sortDirection: number;
+    setSortDirection: (value: number) => void;
     chooseType: (e: ChangeEvent<HTMLSelectElement>) => void;
     chooseStatus: (e: ChangeEvent<HTMLSelectElement>) => void;
     toggleFilter: (name: string, checked: boolean) => void;
@@ -43,9 +47,21 @@ export function IngredientFilters(props: IngredientFiltersProps) {
         </div>
     </>;
     return (<div className="filters">
-        <button className="icon-button filter-button" onClick={() => setShowFilters(!showFilters)}>
-            <span>Filters</span><FontAwesomeIcon icon={showFilters ? faCaretDown : faCaretUp} />
-        </button>
+        <div className="filter-header">
+            <button className="icon-button filter-button" onClick={() => setShowFilters(!showFilters)}>
+                <span>Filter</span><FontAwesomeIcon icon={showFilters ? faCaretDown : faCaretUp} />
+            </button>
+            <div className="sort-by">
+                <label>Sort By</label>
+                <select value={props.sortBy} onChange={(e) => props.setSortBy(e.target.value)}>
+                    <option value="name">Name</option>
+                    <option value="status-date">Updated Date</option>
+                </select>
+                <button className="icon-button sort-direction" onClick={() => props.setSortDirection(-props.sortDirection)}>
+                    <FontAwesomeIcon icon={props.sortDirection === 1 ? faCaretUp : faCaretDown} />
+                </button>
+            </div>
+        </div>
         {showFilters && filters}
     </div>);
 }
