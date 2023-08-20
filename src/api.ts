@@ -57,5 +57,6 @@ const mapIngredient = (ingredient: Ingredient) => {
   return {
     ...ingredient,
     statusDate: ingredient.statusDate ? new Date(ingredient.statusDate) : null,
+    expirationDate: ingredient.expirationDate ? new Date(ingredient.expirationDate) : null,
   };
 }

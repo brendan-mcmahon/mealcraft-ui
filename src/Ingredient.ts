@@ -19,4 +19,5 @@ export interface Ingredient {
   status: IngredientStatus;
   type: IngredientType;
   statusDate: Date | null;
+  expirationDate: Date | null;
 }

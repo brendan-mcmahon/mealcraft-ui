@@ -185,11 +185,18 @@
             grid-template-areas:
                 "name edit"
                 "tags status";
-            // background-color: var(--cool-green);
             padding: 8px;
             align-items: center;
             border: solid grey 3px;
             margin-top: 8px;
+
+            p {
+                margin: 0;
+
+                &.expiration {
+                    font-size: 16px;
+                }
+            }
 
             .edit-button {
                 grid-area: edit;
@@ -305,47 +312,35 @@
 
         form {
             grid-area: body;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto 1fr 1fr;
+            display: flex;
+            flex-direction: column;
 
-            grid-template-areas:
-                "input"
-                "type"
-                "tags"
-                "buttons";
-
-            .name {
-                grid-area: input;
-                margin-bottom: 8px;
+            .form-group {
                 display: flex;
                 align-items: flex-start;
                 flex-direction: column;
-                input {
-                    width: 100%;
-                }
+                margin-bottom: 8px;
+
                 label {
                     color: black;
                     line-height: 1.5em;
                     margin-bottom: 2px;
                 }
+                select {
+                    width: 100%;
+                }
+
+                input {
+                    width: 100%;
+                }
+            }
+
+            .name {
+                grid-area: input;
             }
 
             .type {
                 grid-area: type;
-                display: flex;
-                align-items: flex-start;
-                flex-direction: column;
-
-                label {
-                    color: black;
-                    line-height: 1.5em;
-                    margin-bottom: 2px;
-                }
-
-                select {
-                    width: 100%;
-                }
 
                 .type-button {
                     background-color: transparent;
@@ -365,8 +360,13 @@
                 }
             }
 
+            .expiration-date {
+                grid-area: expiration;
+            }
+
             .tags {
                 display: flex;
+                flex-direction: row;
                 justify-content: flex-start;
                 flex-wrap: wrap;
             }
@@ -376,6 +376,7 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+                margin-top: 16px;
 
                 button {
                     background-color: var(--cool-green);

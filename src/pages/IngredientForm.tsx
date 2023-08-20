@@ -18,18 +18,21 @@ type IngredientFormProps = {
 
 export function IngredientForm(props: IngredientFormProps) {
     const [ingredientName, setIngredientName] = useState(props.ingredient?.name || '');
-    const [ingredientType, setIngredientType] = useState<number>(props.ingredient?.type || 0);
+    const [groceryType, setGroceryType] = useState<number>(props.ingredient?.type || 0);
     const [tags, setTags] = useState<string[]>(props.ingredient?.tags || []);
+    const [expirationDate, setExpirationDate] = useState<Date | null>(props.ingredient?.expirationDate || null);
     const input = useRef<HTMLInputElement>(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
         if (props.isOpen && input.current) {
             setIngredientName(props.ingredient?.name || '');
+            setGroceryType(props.ingredient?.type || 0);
+            setExpirationDate(props.ingredient?.expirationDate || null);
             setTags(props.ingredient?.tags || []);
             input.current.focus();
         }
-    }, [props.isOpen]);
+    }, [props.isOpen, props.ingredient]);
 
     const addTag = (tag: string, checked: boolean) => {
         if (checked) {
@@ -55,10 +58,11 @@ export function IngredientForm(props: IngredientFormProps) {
         const newIngredient = {
             name: ingredientName,
             ingredientId: uuidv4(),
-            type: ingredientType as IngredientType,
+            type: groceryType as IngredientType,
             tags: tags,
             status: IngredientStatus.Plenty,
-            statusDate: null
+            statusDate: null,
+            expirationDate: expirationDate
         };
 
         saveIngredient(newIngredient)
@@ -74,16 +78,20 @@ export function IngredientForm(props: IngredientFormProps) {
     }
 
     function saveEditIngredient(ingredient: Ingredient) {
-        const _tags = tags.filter((t) => t !== "food" && t !== "hygiene" && t !== "cleaning");
+        const newTags = tags.filter((t) => t !== "food" && t !== "hygiene" && t !== "cleaning");
         const updatedIngredient = {
             ...ingredient,
             ingredientId: ingredient?.ingredientId,
             status: ingredient?.status,
             statusDate: ingredient?.statusDate,
-            type: ingredientType as IngredientType,
+            type: groceryType as IngredientType,
             name: ingredientName,
-            tags: _tags
+            tags: newTags,
+            expirationDate: expirationDate
         };
+
+        console.log('updatedIngredient', updatedIngredient);
+
         updateIngredient(updatedIngredient)
             .then(() => {
                 props.onSaveComplete(updatedIngredient);
@@ -125,7 +133,7 @@ export function IngredientForm(props: IngredientFormProps) {
 
             <div className='form-group type'>
                 <label>Type</label>
-                <select className="ingredient-type" value={ingredientType} onChange={e => setIngredientType(parseInt(e.target.value))}>
+                <select className="ingredient-type" value={groceryType} onChange={e => setGroceryType(parseInt(e.target.value))}>
                     {
                         Object.keys(IngredientType)
                             .filter((key) => !isNaN(Number(key)))
@@ -136,6 +144,17 @@ export function IngredientForm(props: IngredientFormProps) {
                 </select>
             </div>
 
+            { groceryType === IngredientType.Food &&
+                <div className="form-group expiration-date">
+                    <label>Expiration Date</label>
+                    <input
+                        className="ingredient-input"
+                        value={expirationDate ? expirationDate.toISOString().split('T')[0] : ''}
+                        onChange={e => setExpirationDate(e.target.value ? new Date(e.target.value) : null)}
+                        type="date"
+                        placeholder="Expiration Date" />
+                </div>
+            }
             <div className="form-group tags">
                 {ingredientTags.map((tag, index) => (
                     <Tag key={index} name={tag} onSelect={addTag} selected={props.ingredient?.tags.includes(tag)} />
@@ -149,5 +168,3 @@ export function IngredientForm(props: IngredientFormProps) {
         </form>
     </Modal>);
 }
-
-

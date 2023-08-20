@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { useSwipeable } from "react-swipeable";
 import { updateIngredient } from "../api";
 import { Ingredient, IngredientStatus } from '../Ingredient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,8 +18,6 @@ export const IngredientListItem: React.FC<IngredientListItemProps> = (props: Ing
     setStatus(props.ingredient.status);
   }, [props.ingredient]);
 
-  // const onSwipedLeft = async () => await onSwiped(status + 1);
-
   const onSwipedRight = async () => await onSwiped((status - 1 + totalStatuses));
 
   const onSwiped = async (direction: number) => {
@@ -33,8 +30,10 @@ export const IngredientListItem: React.FC<IngredientListItemProps> = (props: Ing
 
   return (
     <div className={`list-item`} >
-      <span>{props.ingredient.name}</span>
-
+      <div><p>{props.ingredient.name}</p>
+        {props.ingredient.expirationDate &&
+          <p className="expiration">{describeDateDifference(props.ingredient.expirationDate)}</p>}
+      </div>
       <button className="icon-button edit-button" onClick={() => props.onClick(props.ingredient)}><FontAwesomeIcon icon={faPencil} /></button>
 
       <div className="status-container">
@@ -80,5 +79,35 @@ function timeAgo(inputDate: Date | null): string {
   else {
     const months = Math.floor(daysDifference / 30);
     return `over ${months} months ago`;
+  }
+}
+
+function describeDateDifference(targetDate: Date): string {
+  const now = new Date();
+  const oneDay = 1000 * 60 * 60 * 24;
+  const oneWeek = oneDay * 7;
+  const oneMonth = oneDay * 30;
+  const oneYear = oneDay * 365;
+
+  const diff = targetDate.getTime() - now.getTime();
+
+  if (diff < 0) {
+    return "expired";
+  } else if (diff === 0) {
+    return "expires today!";
+  } else if (diff < oneDay) {
+    return "expires tomorrow!";
+  } else if (diff < oneWeek) {
+    const days = Math.round(diff / oneDay);
+    return `expires in ${days}`;
+  } else if (diff < oneMonth) {
+    const weeks = Math.round(diff / oneWeek);
+    return weeks === 1 ? `expires in ${weeks} week` : `expires in ${weeks} weeks`;
+  } else if (diff < oneYear) {
+    const months = Math.round(diff / oneMonth);
+    return months === 1 ? `expires in ${months} month` : `expires in ${months} months`;
+  } else {
+    const years = now.getFullYear() - targetDate.getFullYear();
+    return years === 1 ? "expires next year" : `expires in ${years} years`;
   }
 }

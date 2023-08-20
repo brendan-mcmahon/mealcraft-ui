@@ -12,10 +12,11 @@
 - [x] Collapse Filters
 - [x] Swiping is too buggy, think of another way
 - [ ] Go button for search to collapse the keyboard
-- [ ] Sort by last updated status
-- [ ] Expiration dates
-- [ ] Status dates are not working. check in aws to see if they're being saved 
+- [x] Sort by last updated status
+- [x] Expiration dates
+- [x] Status dates are not working. check in aws to see if they're being saved 
 - [ ] Add ability to create new tags
+- [ ] Should the expiration date clear when the stats goes to "out"?
   
 # Recipes
 * Structure of a recipe:

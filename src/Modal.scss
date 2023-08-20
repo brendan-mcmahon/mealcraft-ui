@@ -29,9 +29,11 @@
         .header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
 
             h2 {
                 color: #333333;
+                text-align: left;
             }
 
             button {
