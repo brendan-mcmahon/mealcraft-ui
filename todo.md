@@ -44,7 +44,6 @@
   * Create
   * Edit
   
-
 # Meal Planning
 - [ ] Would be cool to have a weather API to quickly see if we can cook out or if we should be eating chili or something like that. Extremely minor, but would be cool.
 - [ ] Would also be cool to see what's on the calendar in the evening to know if we'll be at home for dinner or not. Extremely minor, but would be cool.

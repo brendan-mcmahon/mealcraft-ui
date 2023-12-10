@@ -44,7 +44,6 @@ export function saveIngredient(ingredient: Ingredient): Promise<Ingredient> {
 }
 
 export function deleteIngredient(ingredientId: string): Promise<void> {
-  console.log("deleting");
   return axios
     .delete<void>(`${API_URL}/ingredients?ingredientId=${ingredientId}`)
     .then((response: AxiosResponse<void>) => response.data)

@@ -90,8 +90,6 @@ export function IngredientForm(props: IngredientFormProps) {
             expirationDate: expirationDate
         };
 
-        console.log('updatedIngredient', updatedIngredient);
-
         updateIngredient(updatedIngredient)
             .then(() => {
                 props.onSaveComplete(updatedIngredient);
@@ -109,7 +107,6 @@ export function IngredientForm(props: IngredientFormProps) {
         if (props.ingredient) {
             deleteIngredient(props.ingredient.ingredientId)
                 .then(() => {
-                    console.log('deleted, now calling onDelete');
                     props.onDelete(props.ingredient as Ingredient);
                     setIngredientName('');
                 })
