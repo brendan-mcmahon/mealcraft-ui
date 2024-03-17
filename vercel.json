@@ -1,6 +1,11 @@
 {
     "routes": [
       {
+        "src": "/(.*).(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$",
+        "dest": "/$1.$2",
+        "continue": true
+      },
+      {
         "src": "/(.*)",
         "dest": "/index.html",
         "status": 200
