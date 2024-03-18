@@ -17,8 +17,22 @@
 - [x] Status dates are not working. check in aws to see if they're being saved 
 - [ ] Add ability to create new tags
 - [ ] Should the expiration date clear when the stats goes to "out"?
+- [ ] When you click the plus button to add a new ingredient, copy the text from the current search if there is one
+- [ ] Add a filter for "last updated"
+
+# Stock
+- [ ] Add pre-built filters like "out/low/expired" or "staple items" or "just this week" or "last updated x days ago" or whatever
+- [ ] Add a dang back button
+- [ ] Add a "I don't know" status
   
 # Recipes
+- [ ] Loading state
+- [ ] Styling
+  - [ ] Desktop-friendly version
+  - [x] Logo
+- [ ] Add Ingredient modal??? Should this be a modal or just on the page?
+- [ ] Need a quick way to add new ingredients that don't exist
+
 * Structure of a recipe:
   * Id
   * Name

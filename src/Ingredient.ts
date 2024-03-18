@@ -21,3 +21,17 @@ export interface Ingredient {
   statusDate: Date | null;
   expirationDate: Date | null;
 }
+
+export interface Recipe {
+  recipeId: string;
+  name: string;
+  description: string;
+  ingredients: RecipeIngredient[];
+  instructions: string[];
+}
+
+export interface RecipeIngredient {
+  ingredientId: string;
+  amount: number;
+  unit: string;
+}

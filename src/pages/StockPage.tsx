@@ -66,12 +66,7 @@ export default function StockPage() {
 
   let body = null
   if (isLoading || !currentItem) {
-    body = (
-      <div className="loading-state">
-        <Loading />
-        <span>Loading Groceries...</span>
-      </div>
-    )
+    body = <Loading />
   } else {
     const currentStatus = IngredientStatus[currentItem.item.status]
     const currentType = IngredientType[currentItem.item.type]
