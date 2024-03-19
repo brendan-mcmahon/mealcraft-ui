@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAllIngredients, updateIngredient } from '../api'
-import { Ingredient, IngredientStatus, IngredientType } from '../Ingredient'
+import { Ingredient, IngredientStatus } from '../Ingredient'
 import './StockPage.scss'
 import Loading from '../Loading'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -78,7 +78,6 @@ export default function StockPage() {
     body = <Loading />
   } else {
     const currentStatus = IngredientStatus[currentItem.item.status]
-    const currentType = IngredientType[currentItem.item.type]
     const currentExpiration = timeAgo(currentItem.item.expirationDate)
     const currentUpdatedDate = timeAgo(currentItem.item.statusDate)
 
@@ -108,11 +107,6 @@ export default function StockPage() {
           </div>
           <button className="icon-button" onClick={() => nextItem()}>
             <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        </div>
-        <div>
-          <button className={`status-button skip`} onClick={() => nextItem()}>
-            Skip
           </button>
         </div>
         <div className="status-buttons">
