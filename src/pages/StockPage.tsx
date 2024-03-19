@@ -3,6 +3,8 @@ import { getAllIngredients, updateIngredient } from '../api'
 import { Ingredient, IngredientStatus, IngredientType } from '../Ingredient'
 import './StockPage.scss'
 import Loading from '../Loading'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 type InventoryItem = {
   inventoried: boolean
@@ -64,6 +66,13 @@ export default function StockPage() {
     }
   }
 
+  const previousItem = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1)
+      setCurrentItem(itemsList[currentIndex - 1])
+    }
+  }
+
   let body = null
   if (isLoading || !currentItem) {
     body = <Loading />
@@ -80,17 +89,26 @@ export default function StockPage() {
           items inventoried
         </h4>
 
-        <div className="item-info-container">
-          <div className="item-info">
-            <h2 className="item-name">{currentItem?.item.name}</h2>
-            <div className="details">
-              <div className={`status ${currentStatus}`}>
-                {currentStatus} since {currentUpdatedDate}
+        <div className="item-header">
+
+          <button className="icon-button" onClick={() => previousItem()}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+
+          <div className="item-info-container">
+            <div className="item-info">
+              <h2 className="item-name">{currentItem?.item.name}</h2>
+              <div className="details">
+                <div className={`status ${currentStatus}`}>
+                  {currentStatus} since {currentUpdatedDate}
+                </div>
+                <div className="expiration">Expires {currentExpiration}</div>
               </div>
-              {/* <div className="type">{currentType}</div> */}
-              <div className="expiration">Expires {currentExpiration}</div>
             </div>
           </div>
+          <button className="icon-button" onClick={() => nextItem()}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
         </div>
         <div>
           <button className={`status-button skip`} onClick={() => nextItem()}>
@@ -135,8 +153,6 @@ function timeAgo(inputDate: Date | null): string {
 
   const timeDifference = now.getTime() - normalizedInputDate.getTime()
   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
-
-  console.log(daysDifference)
 
   if (daysDifference === 0) return 'today'
   else if (daysDifference === 1) return 'yesterday'

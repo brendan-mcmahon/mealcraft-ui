@@ -18,6 +18,18 @@
         margin-bottom: 0;
     }
 
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+
+        .icon-button {
+            color: white;
+            font-size: 32px;
+        }
+    }
+
     .item-info-container {
         display: flex;
         justify-content: center;
@@ -69,11 +81,6 @@
 
             &.out {
                 background-color: var(--cool-red);
-                color: black;
-            }
-
-            &.skip {
-                background-color: var(--cool-blue);
                 color: black;
             }
         }
