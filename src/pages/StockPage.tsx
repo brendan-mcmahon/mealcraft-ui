@@ -79,6 +79,7 @@ export default function StockPage() {
           {itemsList.filter((i) => i.inventoried).length}/{itemsList.length}{' '}
           items inventoried
         </h4>
+
         <div className="item-info-container">
           <div className="item-info">
             <h2 className="item-name">{currentItem?.item.name}</h2>
@@ -90,6 +91,11 @@ export default function StockPage() {
               <div className="expiration">Expires {currentExpiration}</div>
             </div>
           </div>
+        </div>
+        <div>
+          <button className={`status-button skip`} onClick={() => nextItem()}>
+            Skip
+          </button>
         </div>
         <div className="status-buttons">
           <button
@@ -109,9 +115,6 @@ export default function StockPage() {
             onClick={() => saveStatus(IngredientStatus.Out)}
           >
             Out
-          </button>
-          <button className={`status-button skip`} onClick={() => nextItem()}>
-            Skip
           </button>
         </div>
       </div>

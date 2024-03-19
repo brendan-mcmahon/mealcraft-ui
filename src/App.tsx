@@ -30,7 +30,7 @@ const App: React.FC = () => {
       </nav>
       {buildTime && <div className="build-time">v{buildTime}</div>}
       <Routes>
-        <Route path="/" element={<WeekPage />}></Route>
+        <Route path="/" element={<StockPage />}></Route>
         <Route path="/groceries" element={<GroceriesPage />}></Route>
         <Route path="/recipes" element={<RecipesPage />}></Route>
         <Route path="/stock" element={<StockPage />}></Route>

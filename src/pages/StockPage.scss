@@ -1,16 +1,16 @@
+.loading-state {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--cool-grey);
+    font-size: 32px;
+}
+
 #StockPage {
     height: 100%;
-
-    .loading-state {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: var(--cool-grey);
-        font-size: 32px;
-    }
 
     .inventoried-count {
         width: 95%;
@@ -21,7 +21,7 @@
     .item-info-container {
         display: flex;
         justify-content: center;
-        flex-direction:column;
+        flex-direction: column;
         align-items: center;
         margin-top: 16px;
         .item-name {
@@ -35,7 +35,6 @@
             margin: 0;
         }
     }
-
 
     .status-buttons {
         display: flex;
@@ -59,7 +58,6 @@
             text-align: center;
             justify-content: center;
 
-
             &.plenty {
                 background-color: var(--cool-green);
             }
@@ -74,12 +72,10 @@
                 color: black;
             }
 
-
             &.skip {
                 background-color: var(--cool-blue);
                 color: black;
             }
         }
     }
-
 }
