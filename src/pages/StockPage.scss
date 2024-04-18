@@ -18,6 +18,15 @@
         margin-bottom: 0;
     }
 
+    .filters {
+        display: flex;
+        margin: 8px 16px;
+
+        .chip {
+            margin-right: 8px;
+        }
+    }
+
     .item-header {
         display: flex;
         justify-content: space-between;

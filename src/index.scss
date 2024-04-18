@@ -1,73 +1,110 @@
 // use local font
 @font-face {
-    font-family: 'Chalk';
-    src: url('./assets/fonts/Chalk Board.ttf');
+  font-family: "Chalk";
+  src: url("./assets/fonts/Chalk Board.ttf");
 }
 
 @font-face {
-    font-family: 'WildySans';
-    // src: url('./assets/fonts/Chalkaholic\ DEMO.otf');
-    src: url('./assets/fonts/Orion Chalk Solid Demo Version.otf');
-    font-weight: bold;
-    font-style: italic;
+  font-family: "WildySans";
+  // src: url('./assets/fonts/Chalkaholic\ DEMO.otf');
+  src: url("./assets/fonts/Orion Chalk Solid Demo Version.otf");
+  font-weight: bold;
+  font-style: italic;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;700&display=swap");
 
 :root {
-    // baloon-dog
-    --cool-blue: #4ABDAC;
-    --cool-red: #FC4A1A;
-    --cool-yellow: #F7B733;
-    --cool-grey: #DFDCE3;
-    --cool-green: #00a632;
+  // baloon-dog
+  --cool-blue: #4abdac;
+  --cool-red: #fc4a1a;
+  --cool-yellow: #f7b733;
+  --cool-grey: #dfdce3;
+  --cool-green: #00a632;
 
-    --primary-font: 'Edu SA Beginner', sans-serif;
-    height: 100vh;
-
+  --primary-font: "Edu SA Beginner", sans-serif;
+  height: 100vh;
 }
 
 body {
-    background-color: #2a2a2a;
-    color: var(--cool-grey); /* dark gray text color */
-    font-family: var(--primary-font);
-    margin:0;
-    height: 100vh;
+  background-color: #2a2a2a;
+  color: var(--cool-grey); /* dark gray text color */
+  font-family: var(--primary-font);
+  margin: 0;
+  height: 100vh;
 
-    #root {
-      height: 100%;
-    }
+  #root {
+    height: 100%;
   }
+}
 
-  h1, h2, a {
-    color: var(--cool-grey);
-    font-family: var(--primary-font);
-    margin: 0;
-  }
+h1,
+h2,
+a {
+  color: var(--cool-grey);
+  font-family: var(--primary-font);
+  margin: 0;
+}
 
-  button {
-    font-family: var(--primary-font);
-  }
-  
-  .button-primary {
-    background-color: var(--cool-red);
-    font-family: var(--primary-font);
-    color: #fff;
-  }
-  
-  .button-secondary {
-    background-color: var(--cool-yellow);
-    font-family: var(--primary-font);
-    color: #fff;
-  }
-  
-  .navbar {
-    background-color: var(--cool-blue);
-    color: #fff;
-  }
+button {
+  font-family: var(--primary-font);
+}
+
+.button-primary {
+  background-color: var(--cool-red);
+  font-family: var(--primary-font);
+  color: #fff;
+}
+
+.button-secondary {
+  background-color: var(--cool-yellow);
+  font-family: var(--primary-font);
+  color: #fff;
+}
+
+.navbar {
+  background-color: var(--cool-blue);
+  color: #fff;
+}
 
 .icon-button {
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+.multiselect-container {
+  position: relative;
+  width: 200px;
+
+  .multiselect-label {
+    padding: 10px;
+    background: 2a2a2a; // TODO: This looks bad
+    border: solid var(--cool-green) 2px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .multiselect-options {
+    position: absolute;
+    width: 100%;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+
+    .multiselect-option {
+      padding: 5px 10px;
+      margin: 2px 0;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+
+      &.selected {
+        background: #007bff;
+        color: #fff;
+      }
+    }
+  }
 }

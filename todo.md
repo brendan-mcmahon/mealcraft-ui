@@ -22,7 +22,7 @@
 - [ ] Add filter for "expired"
 
 # Stock
-- [ ] Add pre-built filters like "out/low/expired" or "staple items" or "just this week" or "last updated x days ago" or whatever
+- [x] Add pre-built filters like "out/low/expired" or "staple items" or "just this week" or "last updated x days ago" or whatever
 - [x] Add a dang back button
 - [ ] Add an "I don't know" status
   

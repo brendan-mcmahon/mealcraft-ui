@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { getAllIngredients } from '../api';
-import { Ingredient } from '../Ingredient';
+import { Ingredient, IngredientStatus, IngredientType } from '../Ingredient';
 import { IngredientForm } from './IngredientForm';
 import "./IngredientsPage.scss";
 import { IngredientListItem } from './IngredientListItem';
@@ -20,9 +20,8 @@ export default function IngredientsPage() {
     const [sortBy, setSortBy] = useState<string>('name');
     const [sortDirection, setSortDirection] = useState<number>(1); // make this 1 or -1 instead of a string
     const [filters, setFilters] = useState<string[]>([]);
-    // const [statusFilter, setStatusFilter] = useState<number>(-1);
-    const [multiStatusFilter, setMultiStatusFilter] = useState<number[]>([]);
-    const [typeFilter, setTypeFilter] = useState<number>(-1);
+    const [statusFilter, setStatusFilter] = useState<number[]>([]);
+    const [typeFilters, setTypeFilters] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
@@ -39,7 +38,7 @@ export default function IngredientsPage() {
     }, []);
 
     useEffect(() => filterList(),
-        [filters, multiStatusFilter, typeFilter, ingredientsList, searchTerm, sortBy, sortDirection]);
+        [filters, statusFilter, typeFilters, ingredientsList, searchTerm, sortBy, sortDirection]);
 
     const handleNewIngredientSaved = (ingredient: Ingredient) => {
         const index = ingredientsList.findIndex((t) => t.ingredientId === ingredient.ingredientId);
@@ -72,31 +71,12 @@ export default function IngredientsPage() {
         }
     };
 
+    const chooseType = (values: Array<IngredientType>) => {
+        setTypeFilters([...values]);
+    }
 
-    const chooseType = (e: ChangeEvent<HTMLSelectElement>) => {
-        const type = parseInt(e.target.value);
-        if (type === -1) {
-            setTypeFilter(-1);
-        } else {
-            setTypeFilter(type);
-        }
-    };
-
-    const chooseStatus = (e: ChangeEvent<HTMLSelectElement>) => {
-        const status = parseInt(e.target.value);
-        // if (status === -1) {
-        //     setStatusFilter(-1);
-        // } else {
-        //     setStatusFilter(status);
-        // }
-
-        // if the status is already in the multiStatusFilter, remove it
-        if (multiStatusFilter.includes(status)) {
-            setMultiStatusFilter(multiStatusFilter.filter((t) => t !== status));
-        } else {
-            setMultiStatusFilter([...multiStatusFilter, status]);
-        }
-
+    const chooseStatus = (values: Array<IngredientStatus>) => {
+        setStatusFilter([...values]);
     };
 
     const onSearchTermChanged = (e: ChangeEvent<HTMLInputElement>) => {
@@ -162,14 +142,11 @@ export default function IngredientsPage() {
             newDisplay = newDisplay.filter(ingredient =>
                 filters.every(filter => ingredient.tags.includes(filter)));
         }
-        // if (statusFilter !== -1) {
-        //     newDisplay = newDisplay.filter(ingredient => ingredient.status === statusFilter);
-        // }
-        if (multiStatusFilter.length > 0) {
-            newDisplay = newDisplay.filter(ingredient => multiStatusFilter.includes(ingredient.status));
+        if (statusFilter.length > 0) {
+            newDisplay = newDisplay.filter(ingredient => statusFilter.includes(ingredient.status));
         }
-        if (typeFilter !== -1) {
-            newDisplay = newDisplay.filter(ingredient => ingredient.type === typeFilter);
+        if (typeFilters.length > 0) {
+            newDisplay = newDisplay.filter(ingredient => typeFilters.includes(ingredient.type));
         }
         if (searchTerm !== '') {
             newDisplay = newDisplay.filter(ingredient =>

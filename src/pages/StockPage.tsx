@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { getAllIngredients, updateIngredient } from '../api'
-import { Ingredient, IngredientStatus } from '../Ingredient'
+import { Ingredient, IngredientStatus, IngredientType } from '../Ingredient'
 import './StockPage.scss'
 import Loading from '../Loading'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Tag } from './Tag'
 
 type InventoryItem = {
   inventoried: boolean
@@ -14,8 +15,11 @@ type InventoryItem = {
 export default function StockPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [itemsList, setItemsList] = useState<InventoryItem[]>([])
+  const [filteredItems, setFilteredItems] = useState<InventoryItem[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [currentItem, setCurrentItem] = useState<InventoryItem | null>(null)
+  const [tagFilters, setTagFilters] = useState<string[]>([])
+  const [typeFilters, setTypeFilters] = useState<IngredientType[]>([])
 
   useEffect(() => {
     getAllIngredients()
@@ -29,6 +33,7 @@ export default function StockPage() {
             }
           })
         setItemsList(metaItems)
+        setFilteredItems(metaItems)
         setIsLoading(false)
         setCurrentItem(metaItems[0])
       })
@@ -37,6 +42,23 @@ export default function StockPage() {
         setIsLoading(false)
       })
   }, [])
+
+  useEffect(() => {
+    if (tagFilters.length === 0 && typeFilters.length === 0) {
+      setFilteredItems(itemsList)
+      setCurrentItem(itemsList.filter(i => !i.inventoried)[0])
+    }
+    if (tagFilters.length > 0) {
+      const newFilteredItems = filteredItems.filter((item) => item.item.tags.includes("staple"));
+      setFilteredItems(newFilteredItems)
+      setCurrentItem(newFilteredItems.filter(i => !i.inventoried)[0])
+    }
+    if (typeFilters.length > 0) {
+      const newFilteredItems = filteredItems.filter((item) => item.item.type === IngredientType.Food);
+      setFilteredItems(newFilteredItems);
+      setCurrentItem(newFilteredItems.filter(i => !i.inventoried)[0])
+    }
+  }, [tagFilters, typeFilters])
 
   const saveStatus = async (status: IngredientStatus) => {
     if (!currentItem) return
@@ -53,23 +75,40 @@ export default function StockPage() {
 
     await updateIngredient(updatedItem.item)
 
-    const newList = [...itemsList]
+    const newList = [...filteredItems]
     newList[currentIndex] = updatedItem
-    setItemsList(newList)
+
+    setFilteredItems(newList)
     nextItem()
   }
 
   const nextItem = () => {
-    if (currentIndex < itemsList.length - 1) {
+    if (currentIndex < filteredItems.length - 1) {
       setCurrentIndex(currentIndex + 1)
-      setCurrentItem(itemsList[currentIndex + 1])
+      setCurrentItem(filteredItems[currentIndex + 1])
     }
   }
 
   const previousItem = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1)
-      setCurrentItem(itemsList[currentIndex - 1])
+      setCurrentItem(filteredItems[currentIndex - 1])
+    }
+  }
+
+  const filterStaples = (_: string, checked: boolean) => {
+    if (checked) {
+      setTagFilters(["staple"])
+    } else {
+      setTagFilters([])
+    }
+  }
+
+  const filterFood = (_: string, checked: boolean) => {
+    if (checked) {
+      setTypeFilters([IngredientType.Food])
+    } else {
+      setTypeFilters([])
     }
   }
 
@@ -84,9 +123,14 @@ export default function StockPage() {
     body = (
       <div id="StockPage">
         <h4 className="inventoried-count">
-          {itemsList.filter((i) => i.inventoried).length}/{itemsList.length}{' '}
+          {filteredItems.filter((i) => i.inventoried).length}/{filteredItems.length}{' '}
           items inventoried
         </h4>
+
+        <div className="filters">
+          <Tag name="Staples" onSelect={filterStaples} />
+          <Tag name="Food" onSelect={filterFood} />
+        </div>
 
         <div className="item-header">
 
@@ -101,7 +145,7 @@ export default function StockPage() {
                 <div className={`status ${currentStatus}`}>
                   {currentStatus} since {currentUpdatedDate}
                 </div>
-                <div className="expiration">Expires {currentExpiration}</div>
+                {currentItem.item.expirationDate && <div className="expiration">Expires {currentExpiration}</div>}
               </div>
             </div>
           </div>

@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import Loading from '../Loading'
-import { getAllIngredients } from '../api'
-import { Ingredient, Recipe } from '../Ingredient'
+import { useState, useEffect } from 'react'
+import Loading from '../../Loading'
+import { getAllIngredients } from '../../api'
+import { Ingredient, IngredientType, Recipe } from '../../Ingredient'
+
+const emptyRecipe: Recipe = {
+  name: '',
+  ingredients: [],
+  recipeId: '',
+  description: '',
+  instructions: []
+}
 
 export default function RecipeBuilderPage() {
-  const [recipe, setRecipe] = useState<Recipe>({} as Recipe)
+  const [recipe, setRecipe] = useState<Recipe>(emptyRecipe)
   const [isLoading, setIsLoading] = useState(true)
   const [itemsList, setItemsList] = useState<Ingredient[]>([])
-  const [selectedIngredientId, setSelectedIngredientId] = useState<
-    string | null
-  >(null)
+  const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(null)
 
   useEffect(() => {
     getAllIngredients()
       .then((data) => {
         const metaItems = data.sort((a, b) => a.name.localeCompare(b.name))
-        setItemsList(metaItems)
+        setItemsList(metaItems.filter(i => i.type === IngredientType.Food))
         setIsLoading(false)
       })
       .catch((error) => {
@@ -24,11 +30,11 @@ export default function RecipeBuilderPage() {
       })
   }, [])
 
-  const handleAddIngredient = () => {
-    console.log('handleAddIngredient', selectedIngredientId)
-    if (!selectedIngredientId) return
+  const handleAddIngredient = (ingredientId: string) => {
+    console.log('handleAddIngredient', ingredientId)
+    if (!ingredientId) return
     const ingredient = itemsList.find(
-      (i) => i.ingredientId === selectedIngredientId,
+      (i) => i.ingredientId === ingredientId,
     )
     if (!ingredient) return
     setRecipe({
@@ -38,6 +44,7 @@ export default function RecipeBuilderPage() {
         { ingredientId: ingredient.ingredientId, amount: 1, unit: 'unit' },
       ],
     })
+    setSelectedIngredientId(null)
   }
 
   const handleRemoveIngredient = (ingredientId: string) => {
@@ -49,16 +56,13 @@ export default function RecipeBuilderPage() {
     })
   }
 
-  if (isLoading) {
-    return <Loading />
-  }
+  if (isLoading) { return <Loading /> }
 
   return (
     <div>
       <h2>Recipe Builder</h2>
       <pre>{JSON.stringify(recipe)}</pre>
-      <div>
-        <label>
+        <label className="form-input">
           Recipe Name:
           <input
             type="text"
@@ -66,9 +70,7 @@ export default function RecipeBuilderPage() {
             onChange={(e) => setRecipe({ ...recipe, name: e.target.value })}
           />
         </label>
-      </div>
-      <div>
-        <label>
+        <label className="form-input">
           Description:
           <textarea
             value={recipe.description}
@@ -77,13 +79,11 @@ export default function RecipeBuilderPage() {
             }
           />
         </label>
-      </div>
-      <div>
-        <label>
+        <label className="form-input">
           Add Ingredient:
           <select
             value={selectedIngredientId ?? ''}
-            onChange={(e) => setSelectedIngredientId(e.target.value)}
+            onChange={(e) => handleAddIngredient(e.target.value)}
           >
             <option value="">Select an ingredient</option>
             {itemsList.map((ingredient) => (
@@ -95,9 +95,8 @@ export default function RecipeBuilderPage() {
               </option>
             ))}
           </select>
-          <button onClick={handleAddIngredient}>Add</button>
+          <button onClick={() => console.log('add new')}>New</button>
         </label>
-      </div>
       <div>
         <h3>Ingredients:</h3>
         <ul>
@@ -120,17 +119,3 @@ export default function RecipeBuilderPage() {
     </div>
   )
 }
-
-// return <div>Recipe Builder
-
-//     <pre>{JSON.stringify(recipe)}</pre>
-
-//     <form>
-//         <label>Recipe Name<input type="text" onChange={e => setRecipe({...recipe, name: e.target.value})}></input></label>
-//         <label>Description<input type="text"></input></label>
-//         <input type="text"></input>
-
-//         <input type="submit"></input>
-//     </form>
-
-// </div>

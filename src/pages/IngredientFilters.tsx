@@ -1,44 +1,47 @@
 import { IngredientStatus, IngredientType } from '../Ingredient';
 import { Tag } from './Tag';
 import { ingredientTags } from '../ingredientTags';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import MultiSelectDropdown from '../MultiSelectDropdown';
 
 type IngredientFiltersProps = {
     sortBy: string;
     setSortBy: (value: string) => void;
     sortDirection: number;
     setSortDirection: (value: number) => void;
-    chooseType: (e: ChangeEvent<HTMLSelectElement>) => void;
-    chooseStatus: (e: ChangeEvent<HTMLSelectElement>) => void;
+    chooseType: (types: Array<IngredientType>) => void;
+    chooseStatus: (statuses: Array<IngredientStatus>) => void;
     toggleFilter: (name: string, checked: boolean) => void;
 };
 
 export function IngredientFilters(props: IngredientFiltersProps) {
     const [showFilters, setShowFilters] = useState(false);
 
+    const typeOptions = [
+        { label: 'Food', value: IngredientType.Food },
+        { label: 'Hygiene', value: IngredientType.Hygiene },
+        { label: 'Cleaning', value: IngredientType.Cleaning },
+        { label: 'Other', value: IngredientType.Other },
+    ]
+
+    const statusOptions = [
+        { label: 'Plenty', value: IngredientStatus.Plenty },
+        { label: 'Low', value: IngredientStatus.Low },
+        { label: 'Out', value: IngredientStatus.Out },
+        { label: 'Ordered', value: IngredientStatus.Ordered },
+    ]
+
     const filters = <>
         <div className="filter-row select-filters">
             <label>
                 Item Type
-                <select onChange={props.chooseType}>
-                    <option value={-1}>All</option>
-                    <option value={(IngredientType.Food as number)}>Food</option>
-                    <option value={(IngredientType.Hygiene as number)}>Hygiene</option>
-                    <option value={(IngredientType.Cleaning as number)}>Cleaning</option>
-                    <option value={(IngredientType.Other as number)}>Other</option>
-                </select>
+                <MultiSelectDropdown<IngredientType> onChange={props.chooseType} options={typeOptions} />
             </label>
             <label>
                 Status
-                <select onChange={props.chooseStatus}>
-                    <option value={-1}>All</option>
-                    <option value={(IngredientStatus.Plenty as number)}>Plenty</option>
-                    <option value={(IngredientStatus.Low as number)}>Low</option>
-                    <option value={(IngredientStatus.Out as number)}>Out</option>
-                    <option value={(IngredientStatus.Ordered as number)}>Ordered</option>
-                </select>
+                <MultiSelectDropdown<IngredientStatus> onChange={props.chooseStatus} options={statusOptions} />
             </label>
         </div>
 
