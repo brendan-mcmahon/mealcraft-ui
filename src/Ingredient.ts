@@ -12,6 +12,15 @@ export enum IngredientType {
   Other
 }
 
+export enum Location {
+  Pantry,
+  Refrigerator,
+  LaundryRoom,
+  KidsBathroom,
+  MasterBathroom,
+  Other
+}
+
 export interface Ingredient {
   ingredientId: string;
   name: string;
@@ -20,6 +29,7 @@ export interface Ingredient {
   type: IngredientType;
   statusDate: Date | null;
   expirationDate: Date | null;
+  location: Location | null;
 }
 
 export interface Recipe {
@@ -30,6 +40,7 @@ export interface Recipe {
   instructions: string[];
 }
 
+// JOIN
 export interface RecipeIngredient {
   ingredientId: string;
   amount: number;

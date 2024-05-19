@@ -1,30 +1,22 @@
+# General
+  - [ ] Favicon for PWA
+
 # Groceries
-- [x] Loading state
-- [ ] Styling
-  - [ ] Desktop-friendly version
-  - [x] Logo
-- [x] Add timestamp and friendly UI for when the last time a status was updated
-- [x] Editing an ingredient is rough
-  - [x] Fix the title
-  - [x] Fix the tags not highlighting (issue with using controlled vs managed components)
-  - [x] Saving state
-- [x] Clear button for search bar
-- [x] Collapse Filters
-- [x] Swiping is too buggy, think of another way
+- [ ] Desktop-friendly version
 - [ ] Go button for search to collapse the keyboard
-- [x] Sort by last updated status
-- [x] Expiration dates
-- [x] Status dates are not working. check in aws to see if they're being saved 
 - [ ] Add ability to create new tags
 - [ ] Should the expiration date clear when the status goes to "out"? Yeah, I think so.
 - [ ] When you click the plus button to add a new ingredient, copy the text from the current search if there is one
 - [ ] Add a filter for "last updated"
 - [ ] Add filter for "expired"
 
+# Shop
+- [ ] Show shopping list for the week
+- [ ] Each item should have a checkmark next to it to mark as "in cart" or whatever
+- [ ] At the bottom, a button to set the status of all checked items to "plenty"
+
 # Stock
-- [x] Add pre-built filters like "out/low/expired" or "staple items" or "just this week" or "last updated x days ago" or whatever
-- [x] Add a dang back button
-- [ ] Add an "I don't know" status
+- [ ] Group by location (pantry, fridge, laundry room, etc)
   
 # Recipes
 - [ ] Loading state
