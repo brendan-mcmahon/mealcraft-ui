@@ -1,70 +1,70 @@
 import axios, { AxiosResponse } from "axios";
-import { Ingredient } from "./Ingredient";
+import { Grocery } from "./Grocery";
 
 const API_URL = "https://ytkjy0j5al.execute-api.us-east-2.amazonaws.com/prod";
 
-export function getIngredient(ingredientId: string): Promise<Ingredient> {
+export function getGrocery(groceryId: string): Promise<Grocery> {
   return axios
-    .get<Ingredient>(`${API_URL}/ingredients?ingredientId=${ingredientId}`)
-    .then((response: AxiosResponse<Ingredient>) => mapIngredient(response.data))
+    .get<Grocery>(`${API_URL}/ingredients?ingredientId=${groceryId}`)
+    .then((response: AxiosResponse<Grocery>) => mapGrocery(response.data))
     .catch((error) => {
       throw error;
     });
 }
 
-export function getAllIngredients(): Promise<Ingredient[]> {
+export function getAllGroceries(): Promise<Grocery[]> {
   return axios
-    .get<Ingredient[]>(`${API_URL}/ingredients/`)
-    .then((response: AxiosResponse<Ingredient[]>) => response.data.map(mapIngredient))
+    .get<Grocery[]>(`${API_URL}/ingredients/`)
+    .then((response: AxiosResponse<Grocery[]>) => response.data.map(mapGrocery))
     .catch((error) => {
       throw error;
     });
 }
 
-export function updateIngredient(ingredient: Ingredient): Promise<Ingredient> {
-  ingredient.tags = [...new Set(ingredient.tags)];
+export function updateGrocery(grocery: Grocery): Promise<Grocery> {
+  grocery.tags = [...new Set(grocery.tags)];
 
   return axios
-    .put<Ingredient>(`${API_URL}/ingredients`, ingredient)
-    .then((response: AxiosResponse<Ingredient>) => mapIngredient(response.data))
+    .put<Grocery>(`${API_URL}/ingredients`, grocery)
+    .then((response: AxiosResponse<Grocery>) => mapGrocery(response.data))
     .catch((error) => {
       throw error;
     });
 }
 
-export function saveIngredient(ingredient: Ingredient): Promise<Ingredient> {
-  ingredient.tags = [...new Set(ingredient.tags)];
+export function saveGrocery(grocery: Grocery): Promise<Grocery> {
+  grocery.tags = [...new Set(grocery.tags)];
 
   return axios
-    .post<Ingredient>(`${API_URL}/ingredients`, ingredient)
-    .then((response: AxiosResponse<Ingredient>) => mapIngredient(response.data))
+    .post<Grocery>(`${API_URL}/ingredients`, grocery)
+    .then((response: AxiosResponse<Grocery>) => mapGrocery(response.data))
     .catch((error) => {
       throw error;
     });
 }
 
-export function deleteIngredient(ingredientId: string): Promise<void> {
+export function deleteGrocery(groceryId: string): Promise<void> {
   return axios
-    .delete<void>(`${API_URL}/ingredients?ingredientId=${ingredientId}`)
+    .delete<void>(`${API_URL}/ingredients?ingredientId=${groceryId}`)
     .then((response: AxiosResponse<void>) => response.data)
     .catch((error) => {
       throw error;
     });
 }
 
-export function updateIngredients(ingredients: Ingredient[]): Promise<Ingredient[]> {
+export function updateGroceries(groceries: Grocery[]): Promise<Grocery[]> {
   return axios
-    .put<Ingredient[]>(`${API_URL}/ingredients/batch`, ingredients)
-    .then((response: AxiosResponse<Ingredient[]>) => response.data.map(mapIngredient))
+    .put<Grocery[]>(`${API_URL}/ingredients/batch`, groceries)
+    .then((response: AxiosResponse<Grocery[]>) => response.data.map(mapGrocery))
     .catch((error) => {
       throw error;
     });
 }
 
-const mapIngredient = (ingredient: Ingredient) => {
+const mapGrocery = (grocery: Grocery) => {
   return {
-    ...ingredient,
-    statusDate: ingredient.statusDate ? new Date(ingredient.statusDate) : null,
-    expirationDate: ingredient.expirationDate ? new Date(ingredient.expirationDate) : null,
+    ...grocery,
+    statusDate: grocery.statusDate ? new Date(grocery.statusDate) : null,
+    expirationDate: grocery.expirationDate ? new Date(grocery.expirationDate) : null,
   };
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Loading from '../../Loading'
-import { getAllIngredients } from '../../api'
-import { Ingredient, IngredientType, Recipe } from '../../Ingredient'
+import { getAllGroceries } from '../../api'
+import { Grocery, GroceryType, Recipe } from '../../Grocery'
 
 const emptyRecipe: Recipe = {
   name: '',
@@ -14,14 +14,14 @@ const emptyRecipe: Recipe = {
 export default function RecipeBuilderPage() {
   const [recipe, setRecipe] = useState<Recipe>(emptyRecipe)
   const [isLoading, setIsLoading] = useState(true)
-  const [itemsList, setItemsList] = useState<Ingredient[]>([])
+  const [itemsList, setItemsList] = useState<Grocery[]>([])
   const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(null)
 
   useEffect(() => {
-    getAllIngredients()
+    getAllGroceries()
       .then((data) => {
         const metaItems = data.sort((a, b) => a.name.localeCompare(b.name))
-        setItemsList(metaItems.filter(i => i.type === IngredientType.Food))
+        setItemsList(metaItems.filter(i => i.type === GroceryType.Food))
         setIsLoading(false)
       })
       .catch((error) => {

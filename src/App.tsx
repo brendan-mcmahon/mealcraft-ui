@@ -5,7 +5,7 @@ import {
   Routes,
   NavLink,
 } from 'react-router-dom'
-import GroceriesPage from './pages/IngredientsPage'
+import GroceriesPage from './pages/Groceries/GroceriesPage'
 import RecipesPage from './pages/Recipes/RecipesPage'
 import RecipeBuilderPage from './pages/Recipes/RecipeBuilderPage'
 // import WeekPage from './pages/WeekPage'
@@ -30,7 +30,6 @@ const navLinks = [
 ]
 
 const App: React.FC = () => {
-  // const currentPath = window.location.pathname
   const [isMobile, setIsMobile] = useState(window.matchMedia('(max-width: 600px)').matches);
 
   useEffect(() => {

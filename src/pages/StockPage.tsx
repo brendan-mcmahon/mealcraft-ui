@@ -1,67 +1,77 @@
-import { useEffect, useState } from 'react'
-import { getAllIngredients, updateIngredient } from '../api'
-import { Ingredient, IngredientStatus, IngredientType } from '../Ingredient'
-import './StockPage.scss'
-import Loading from '../Loading'
+import { useEffect, useState } from 'react';
+import { getAllGroceries, updateGrocery } from '../api';
+import { Grocery, GroceryStatus, GroceryType, LocationNames, LocationSortOrder } from '../Grocery';
+import './StockPage.scss';
+import Loading from '../Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Tag } from './Tag'
+import { Tag } from './Tag';
+import { timeAgo } from './utilities';
 
 type InventoryItem = {
-  inventoried: boolean
-  item: Ingredient
-}
+  inventoried: boolean;
+  item: Grocery;
+};
 
 export default function StockPage() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [itemsList, setItemsList] = useState<InventoryItem[]>([])
-  const [filteredItems, setFilteredItems] = useState<InventoryItem[]>([])
-  const [currentIndex, setCurrentIndex] = useState<number>(0)
-  const [currentItem, setCurrentItem] = useState<InventoryItem | null>(null)
-  const [tagFilters, setTagFilters] = useState<string[]>([])
-  const [typeFilters, setTypeFilters] = useState<IngredientType[]>([])
+  const [isLoading, setIsLoading] = useState(true);
+  const [itemsList, setItemsList] = useState<InventoryItem[]>([]);
+  const [filteredItems, setFilteredItems] = useState<InventoryItem[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentItem, setCurrentItem] = useState<InventoryItem | null>(null);
+  const [tagFilters, setTagFilters] = useState<string[]>([]);
+  const [typeFilters, setTypeFilters] = useState<GroceryType[]>([]);
 
   useEffect(() => {
-    getAllIngredients()
+    getAllGroceries()
       .then((data) => {
         const metaItems = data
           .sort((a, b) => a.name.localeCompare(b.name))
-          .map((item) => {
-            return {
-              inventoried: false,
-              item: item,
+          .sort((a, b) => {
+            const locationA = LocationSortOrder.indexOf(a.location);
+            const locationB = LocationSortOrder.indexOf(b.location);
+
+            if (locationA === locationB) {
+              return a.name.localeCompare(b.name);
             }
+            return locationA - locationB;
           })
-        setItemsList(metaItems)
-        setFilteredItems(metaItems)
-        setIsLoading(false)
-        setCurrentItem(metaItems[0])
+          .map((item) => ({
+            inventoried: false,
+            item: item,
+          }));
+        setItemsList(metaItems);
+        setFilteredItems(metaItems);
+        setIsLoading(false);
+        setCurrentItem(metaItems[0]);
       })
       .catch((error) => {
-        console.error('Error:', error)
-        setIsLoading(false)
-      })
-  }, [])
+        console.error('Error:', error);
+        setIsLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
-    if (tagFilters.length === 0 && typeFilters.length === 0) {
-      setFilteredItems(itemsList)
-      setCurrentItem(itemsList.filter(i => !i.inventoried)[0])
-    }
-    if (tagFilters.length > 0) {
-      const newFilteredItems = filteredItems.filter((item) => item.item.tags.includes("staple"));
-      setFilteredItems(newFilteredItems)
-      setCurrentItem(newFilteredItems.filter(i => !i.inventoried)[0])
-    }
-    if (typeFilters.length > 0) {
-      const newFilteredItems = filteredItems.filter((item) => item.item.type === IngredientType.Food);
-      setFilteredItems(newFilteredItems);
-      setCurrentItem(newFilteredItems.filter(i => !i.inventoried)[0])
-    }
-  }, [tagFilters, typeFilters])
+    let newFilteredItems = itemsList;
 
-  const saveStatus = async (status: IngredientStatus) => {
-    if (!currentItem) return
+    if (tagFilters.length > 0) {
+      newFilteredItems = newFilteredItems.filter((item) =>
+        tagFilters.every((filter) => item.item.tags.includes(filter))
+      );
+    }
+
+    if (typeFilters.length > 0) {
+      newFilteredItems = newFilteredItems.filter((item) =>
+        typeFilters.includes(item.item.type)
+      );
+    }
+
+    setFilteredItems(newFilteredItems);
+    setCurrentItem(newFilteredItems.find((i) => !i.inventoried) || null);
+  }, [tagFilters, typeFilters, itemsList]);
+
+  const saveStatus = async (status: GroceryStatus) => {
+    if (!currentItem) return;
 
     const updatedItem = {
       ...currentItem,
@@ -71,54 +81,54 @@ export default function StockPage() {
         status: status,
         statusDate: new Date(),
       },
-    }
+    };
 
-    await updateIngredient(updatedItem.item)
+    await updateGrocery(updatedItem.item);
 
-    const newList = [...filteredItems]
-    newList[currentIndex] = updatedItem
+    const newList = [...filteredItems];
+    newList[currentIndex] = updatedItem;
 
-    setFilteredItems(newList)
-    nextItem()
-  }
+    setFilteredItems(newList);
+    nextItem();
+  };
 
   const nextItem = () => {
     if (currentIndex < filteredItems.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-      setCurrentItem(filteredItems[currentIndex + 1])
+      setCurrentIndex(currentIndex + 1);
+      setCurrentItem(filteredItems[currentIndex + 1]);
     }
-  }
+  };
 
   const previousItem = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-      setCurrentItem(filteredItems[currentIndex - 1])
+      setCurrentIndex(currentIndex - 1);
+      setCurrentItem(filteredItems[currentIndex - 1]);
     }
-  }
+  };
 
   const filterStaples = (_: string, checked: boolean) => {
     if (checked) {
-      setTagFilters(["staple"])
+      setTagFilters([...tagFilters, "staple"]);
     } else {
-      setTagFilters([])
+      setTagFilters(tagFilters.filter((tag) => tag !== "staple"));
     }
-  }
+  };
 
   const filterFood = (_: string, checked: boolean) => {
     if (checked) {
-      setTypeFilters([IngredientType.Food])
+      setTypeFilters([...typeFilters, GroceryType.Food]);
     } else {
-      setTypeFilters([])
+      setTypeFilters(typeFilters.filter((type) => type !== GroceryType.Food));
     }
-  }
+  };
 
-  let body = null
+  let body = null;
   if (isLoading || !currentItem) {
-    body = <Loading />
+    body = <Loading />;
   } else {
-    const currentStatus = IngredientStatus[currentItem.item.status]
-    const currentExpiration = timeAgo(currentItem.item.expirationDate)
-    const currentUpdatedDate = timeAgo(currentItem.item.statusDate)
+    const currentStatus = GroceryStatus[currentItem.item.status];
+    const currentExpiration = timeAgo(currentItem.item.expirationDate);
+    const currentUpdatedDate = timeAgo(currentItem.item.statusDate);
 
     body = (
       <div id="StockPage">
@@ -133,7 +143,6 @@ export default function StockPage() {
         </div>
 
         <div className="item-header">
-
           <button className="icon-button" onClick={() => previousItem()}>
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
@@ -145,6 +154,7 @@ export default function StockPage() {
                 <div className={`status ${currentStatus}`}>
                   {currentStatus} since {currentUpdatedDate}
                 </div>
+                <div>{`${LocationNames[currentItem.item.location]}`}</div>
                 {currentItem.item.expirationDate && <div className="expiration">Expires {currentExpiration}</div>}
               </div>
             </div>
@@ -156,51 +166,26 @@ export default function StockPage() {
         <div className="status-buttons">
           <button
             className={`status-button plenty`}
-            onClick={() => saveStatus(IngredientStatus.Plenty)}
+            onClick={() => saveStatus(GroceryStatus.Plenty)}
           >
             Plenty
           </button>
           <button
             className={`status-button low`}
-            onClick={() => saveStatus(IngredientStatus.Low)}
+            onClick={() => saveStatus(GroceryStatus.Low)}
           >
             Low
           </button>
           <button
             className={`status-button out`}
-            onClick={() => saveStatus(IngredientStatus.Out)}
+            onClick={() => saveStatus(GroceryStatus.Out)}
           >
             Out
           </button>
         </div>
       </div>
-    )
+    );
   }
 
-  return body
-}
-
-function timeAgo(inputDate: Date | null): string {
-  if (inputDate === null) return 'never'
-
-  const now = new Date()
-  now.setHours(0, 0, 0, 0)
-
-  const normalizedInputDate = new Date(inputDate)
-  normalizedInputDate.setHours(0, 0, 0, 0)
-
-  const timeDifference = now.getTime() - normalizedInputDate.getTime()
-  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
-
-  if (daysDifference === 0) return 'today'
-  else if (daysDifference === 1) return 'yesterday'
-  else if (daysDifference <= 7) return `${daysDifference} days ago`
-  else if (daysDifference <= 14) return 'over a week ago'
-  else if (daysDifference <= 21) return 'over 2 weeks ago'
-  else if (daysDifference <= 28) return 'over 3 weeks ago'
-  else if (daysDifference <= 32) return 'over a month ago'
-  else {
-    const months = Math.floor(daysDifference / 30)
-    return `over ${months} months ago`
-  }
+  return body;
 }

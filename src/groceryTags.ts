@@ -1,4 +1,4 @@
-export const ingredientTags = [
+export const groceryTags = [
     "spice",
     "condiment",
     "kids",

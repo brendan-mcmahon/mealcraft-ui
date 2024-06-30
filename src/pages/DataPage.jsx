@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useTable } from 'react-table';
-import { getAllIngredients, updateIngredients } from '../api';
+import { getAllGroceries, updateGroceries } from '../api';
 import { format } from 'date-fns';
-import { Location } from '../Ingredient';
+import { Location } from '../Grocery';
 import "./DataPage.scss";
 
 const getEnumValues = (enumObj) => {
@@ -65,14 +65,14 @@ const columns = [
 ];
 
 const DataPage = () => {
-    const [ingredientsList, setIngredientsList] = useState([]);
+    const [groceriesList, setGroceriesList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
-        getAllIngredients()
+        getAllGroceries()
             .then(data => {
-                setIngredientsList(data);
+                setGroceriesList(data);
                 setIsLoading(false);
             })
             .catch(error => {
@@ -81,7 +81,7 @@ const DataPage = () => {
             });
     }, []);
 
-    const tableInstance = useTable({ columns, data: ingredientsList, state: { setIngredientsList } });
+    const tableInstance = useTable({ columns, data: groceriesList, state: { setGroceriesList } });
 
     const {
         getTableProps,
@@ -94,7 +94,7 @@ const DataPage = () => {
     const handleSave = async () => {
         setIsSaving(true);
         try {
-            await updateIngredients(ingredientsList);
+            await updateGroceries(groceriesList);
             alert('Data saved successfully!');
         } catch (error) {
             console.error('Error saving data:', error);
@@ -110,7 +110,7 @@ const DataPage = () => {
 
     return (
         <div>
-            <table id="ingredients-data" {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+            <table id="groceries-data" {...getTableProps()} style={{ border: 'solid 1px blue' }}>
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>

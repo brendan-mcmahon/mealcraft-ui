@@ -1,4 +1,4 @@
-#Ingredients {
+#Groceries {
     height: 100%;
 
     .loading-state {
@@ -177,7 +177,7 @@
         font-size: 32px;
     }
 
-    .ingredients-list {
+    .groceries-list {
         list-style: none;
         font-size: 32px;
         padding: 0px 12px;
@@ -223,7 +223,7 @@
                 }
             }
 
-            .ingredient-tags {
+            .grocery-tags {
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;

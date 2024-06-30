@@ -6,7 +6,7 @@
 - [ ] Go button for search to collapse the keyboard
 - [ ] Add ability to create new tags
 - [ ] Should the expiration date clear when the status goes to "out"? Yeah, I think so.
-- [ ] When you click the plus button to add a new ingredient, copy the text from the current search if there is one
+- [x] When you click the plus button to add a new ingredient, copy the text from the current search if there is one
 - [ ] Add a filter for "last updated"
 - [ ] Add filter for "expired"
 
