@@ -1,0 +1,26 @@
+.week {
+    display: flex;
+    flex-direction: column;
+    // width: 100dvw;
+
+    .day {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        grid-template-rows: 1rem auto;
+        grid-gap: 10px;
+        padding: 10px;
+        align-items: center;
+        border-bottom: 3px white solid;
+        width: 100%;
+        label {
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        p {
+            margin: 0;
+            font-size: 2rem;
+        }
+    }
+}

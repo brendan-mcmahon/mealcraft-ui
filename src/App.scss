@@ -28,7 +28,11 @@ nav {
     a {
         text-decoration: none;
         padding: 8px;
-        border-radius: 100px;
+        // border-radius: 100px;
+        
+        img {
+            height: 40px;
+        }
 
         &.active {
             background-color: var(--cool-grey);

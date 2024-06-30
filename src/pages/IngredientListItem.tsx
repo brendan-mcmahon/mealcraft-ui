@@ -12,32 +12,41 @@ type IngredientListItemProps = {
 export const IngredientListItem: React.FC<IngredientListItemProps> = (props: IngredientListItemProps) => {
   const [status, setStatus] = useState<IngredientStatus>(props.ingredient.status);
   const [statusDate, setStatusDate] = useState<Date | null>(props.ingredient.statusDate || null);
-  const totalStatuses = Object.keys(IngredientStatus).length / 2;
 
   useEffect(() => {
     setStatus(props.ingredient.status);
   }, [props.ingredient]);
 
-  const onSwipedRight = async () => await onSwiped((status - 1 + totalStatuses));
-
-  const onSwiped = async (direction: number) => {
-    const nextStatus = direction % totalStatuses;
+  const onSwiped = async (nextStatus: IngredientStatus) => {
     await updateIngredient({ ...props.ingredient, status: nextStatus, statusDate: new Date() });
 
-    setStatus(nextStatus as IngredientStatus);
+    setStatus(nextStatus);
     setStatusDate(new Date());
   }
 
   return (
-    <div className={`list-item`} >
-      <div><p>{props.ingredient.name}</p>
+    <div className={`list-item`}>
+      <div>
+        <p>{props.ingredient.name}</p>
         {props.ingredient.expirationDate &&
           <p className="expiration">{describeDateDifference(props.ingredient.expirationDate)}</p>}
       </div>
       <button className="icon-button edit-button" onClick={() => props.onClick(props.ingredient)}><FontAwesomeIcon icon={faPencil} /></button>
 
       <div className="status-container">
-        <div className={`status ${IngredientStatus[status]}`} onClick={() => onSwipedRight()}>{IngredientStatus[status]}</div>
+        <select
+          className={`status ${IngredientStatus[status]}`}
+          value={status}
+          onChange={(e) => onSwiped(Number(e.target.value) as IngredientStatus)}
+        >
+          {Object.keys(IngredientStatus)
+            .filter((key) => isNaN(Number(key)))
+            .map((key) => (
+              <option key={IngredientStatus[key]} value={IngredientStatus[key]}>
+                {key}
+              </option>
+            ))}
+        </select>
         <div className="status-date">Updated {timeAgo(statusDate)}</div>
       </div>
 

@@ -52,6 +52,15 @@ export function deleteIngredient(ingredientId: string): Promise<void> {
     });
 }
 
+export function updateIngredients(ingredients: Ingredient[]): Promise<Ingredient[]> {
+  return axios
+    .put<Ingredient[]>(`${API_URL}/ingredients/batch`, ingredients)
+    .then((response: AxiosResponse<Ingredient[]>) => response.data.map(mapIngredient))
+    .catch((error) => {
+      throw error;
+    });
+}
+
 const mapIngredient = (ingredient: Ingredient) => {
   return {
     ...ingredient,

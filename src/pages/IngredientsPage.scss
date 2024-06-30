@@ -246,6 +246,7 @@
                     border-radius: 50px;
                     padding: 8px;
                     margin-bottom: 8px;
+                    text-align: center;
 
                     &.Plenty {
                         background-color: var(--cool-green);
@@ -253,16 +254,19 @@
 
                     &.Out {
                         background-color: var(--cool-red);
+                        border-color: var(--cool-red);
                         color: black;
                     }
 
                     &.Low {
                         background-color: var(--cool-yellow);
+                        border-color: var(--cool-yellow);
                         color: black;
                     }
 
                     &.Ordered {
                         background-color: var(--cool-blue);
+                        border-color: var(--cool-blue);
                         color: black;
                     }
                 }
