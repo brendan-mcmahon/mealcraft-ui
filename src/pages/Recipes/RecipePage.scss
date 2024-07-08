@@ -1,0 +1,113 @@
+#Recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    .title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 1rem;
+        font-style: italic;
+        margin: 0;
+    }
+
+    .ingredients {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid var(--cool-grey);
+        border-radius: 10px;
+        align-self: stretch;
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+
+
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .ingredient-container {
+            font-size: 1rem;
+            margin: 0;
+            display: flex;
+            font-size: 1.5rem;
+
+            .ingredient {
+                display: flex;
+                align-items: center;
+
+                .checkbox-wrapper {
+                    margin-right: 8px;
+                }
+
+            }
+
+        }
+    }
+
+    .instructions {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid var(--cool-grey);
+        border-radius: 10px;
+        align-self: stretch;
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+
+
+        }
+
+        ul,
+        ol {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .instruction-container {
+            font-size: 1rem;
+            margin: 0;
+            display: flex;
+            font-size: 1.5rem;
+
+            .instruction {
+                display: grid;
+                grid-gap: 8px;
+                grid-template-columns: 30px 1fr;
+                margin-bottom: 2rem;
+
+                .checkbox-wrapper {
+                    margin-right: 8px;
+                }
+
+            }
+
+        }
+    }
+}
+
+.add-ingredient-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--cool-grey);
+    border-radius: 10px;
+    margin-top: 20px;
+}

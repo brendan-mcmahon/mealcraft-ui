@@ -1,7 +1,6 @@
 .week {
     display: flex;
     flex-direction: column;
-    // width: 100dvw;
 
     .day {
         display: grid;
@@ -18,7 +17,7 @@
             font-weight: bold;
             margin: 0;
         }
-        p {
+        p, a {
             margin: 0;
             font-size: 2rem;
         }

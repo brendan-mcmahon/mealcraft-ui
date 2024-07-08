@@ -1,4 +1,4 @@
-import { GroceryStatus, GroceryType } from '../../Grocery';
+import { GroceryStatus, GroceryType } from '../../Models';
 import { Tag } from '../Tag';
 import { groceryTags as groceryTags } from '../../groceryTags';
 import { useState } from 'react';

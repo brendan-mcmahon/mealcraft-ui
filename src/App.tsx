@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import GroceriesPage from './pages/Groceries/GroceriesPage'
 import RecipesPage from './pages/Recipes/RecipesPage'
+import RecipePage from './pages/Recipes/RecipePage'
 import RecipeBuilderPage from './pages/Recipes/RecipeBuilderPage'
 // import WeekPage from './pages/WeekPage'
 import StockPage from './pages/StockPage'
@@ -48,19 +49,14 @@ const App: React.FC = () => {
   return (
     <Router basename={import.meta.env.VITE_BUILD_TIME}>
       <nav>
-        {/* <NavLink to="/">This Week</NavLink> */}
         {navLinks.map(({ to, label, icon }) => (
           <NavLink key={to} to={to}>
             {isMobile
-              // ? <span role="img" aria-label={label}>{icon}</span>
               ? <img src={icon} />
               : label}
           </NavLink>
         ))}
-        {/* <NavLink to="/groceries">Groceries</NavLink>
-        <NavLink to="/stock">Take Stock</NavLink>
-        <NavLink to="/recipes">Recipes</NavLink>
-        <NavLink to="/week">This Week</NavLink> */}
+
       </nav>
       {buildTime && <div className="build-time">v{buildTime}</div>}
       <Routes>
@@ -71,6 +67,7 @@ const App: React.FC = () => {
         <Route path="/recipe-builder" element={<RecipeBuilderPage />}></Route>
         {/* <Route path="/data" element={<DataPage />}></Route> */}
         <Route path="/week" element={<WeekPage />}></Route>
+        <Route path="/recipe" element={<RecipePage />} />
       </Routes>
     </Router>
   )

@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { getAllGroceries as getAllGroceries } from '../../api';
-import { Grocery, GroceryStatus, GroceryType } from '../../Grocery';
+import { Grocery, GroceryStatus, GroceryType } from '../../Models';
 import { GroceryForm } from './GroceryForm';
 import "./GroceriesPage.scss";
 import { GroceryListItem } from './GroceryListItem';

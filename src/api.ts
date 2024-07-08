@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { Grocery } from "./Grocery";
+import { Grocery, Recipe } from "./Models";
 
 const API_URL = "https://ytkjy0j5al.execute-api.us-east-2.amazonaws.com/prod";
 
@@ -56,6 +56,24 @@ export function updateGroceries(groceries: Grocery[]): Promise<Grocery[]> {
   return axios
     .put<Grocery[]>(`${API_URL}/ingredients/batch`, groceries)
     .then((response: AxiosResponse<Grocery[]>) => response.data.map(mapGrocery))
+    .catch((error) => {
+      throw error;
+    });
+}
+
+export function getRecipe(recipeId: string): Promise<Recipe> {
+  return axios
+    .get<Recipe>(`${API_URL}/recipe?recipeId=${recipeId}`)
+    .then((response: AxiosResponse<Recipe>) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+}
+
+export function getAllRecipes(): Promise<Recipe[]> {
+  return axios
+    .get<Recipe[]>(`${API_URL}/recipes`)
+    .then((response: AxiosResponse<Recipe[]>) => response.data)
     .catch((error) => {
       throw error;
     });

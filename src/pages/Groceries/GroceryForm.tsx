@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, FormEvent } from 'react';
 import { saveGrocery, updateGrocery, deleteGrocery } from '../../api';
-import { GroceryStatus, GroceryType, Grocery, Location, LocationNames } from '../../Grocery';
+import { GroceryStatus, GroceryType, Grocery, Location, LocationNames } from '../../Models';
 import { v4 as uuidv4 } from 'uuid';
 import Modal from "../../Modal";
 import { Tag } from '../Tag';
@@ -12,11 +12,10 @@ type GroceryFormProps = {
     onSaveComplete: (grocery: Grocery) => void;
     onDelete: (grocery: Grocery) => void;
     handleCancel: () => void;
-    grocery: Grocery | null;
+    grocery: Grocery;
 };
 
 export function GroceryForm(props: GroceryFormProps) {
-    console.log(props.grocery?.tags || "New Grocery");
     const [groceryName, setGroceryName] = useState(props.grocery?.name || '');
     const [groceryType, setGroceryType] = useState<number>(props.grocery?.type || 0);
     const [groceryLocation, setGroceryLocation] = useState<number | null>(props.grocery?.location || Location.Pantry);
@@ -48,7 +47,7 @@ export function GroceryForm(props: GroceryFormProps) {
 
         setIsProcessing(true);
 
-        if (props.grocery) {
+        if (props.grocery.ingredientId) {
             saveEditGrocery(props.grocery);
         } else {
             saveNewGrocery();
@@ -170,7 +169,6 @@ export function GroceryForm(props: GroceryFormProps) {
             </div>
             <div className="form-group tags">
                 {groceryTags.map((tag, index) => {
-                    console.log(`Ingredient ${props.grocery?.name} has tags ${props.grocery?.tags.includes(tag)}`);
                     return (
                         <Tag key={index} name={tag} onSelect={addTag} selected={props.grocery?.tags.includes(tag)} />
                     )

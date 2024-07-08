@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAllGroceries, updateGrocery } from '../api';
-import { Grocery, GroceryStatus, GroceryType, LocationNames, LocationSortOrder } from '../Grocery';
+import { Grocery, GroceryStatus, GroceryType, LocationNames, LocationSortOrder } from '../Models';
 import './StockPage.scss';
 import Loading from '../Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

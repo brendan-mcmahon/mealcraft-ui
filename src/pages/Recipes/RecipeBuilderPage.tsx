@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Loading from '../../Loading'
 import { getAllGroceries } from '../../api'
-import { Grocery, GroceryType, Recipe } from '../../Grocery'
+import { Grocery, GroceryType, Recipe } from '../../Models'
 
 const emptyRecipe: Recipe = {
   name: '',
@@ -31,7 +31,6 @@ export default function RecipeBuilderPage() {
   }, [])
 
   const handleAddIngredient = (ingredientId: string) => {
-    console.log('handleAddIngredient', ingredientId)
     if (!ingredientId) return
     const ingredient = itemsList.find(
       (i) => i.ingredientId === ingredientId,

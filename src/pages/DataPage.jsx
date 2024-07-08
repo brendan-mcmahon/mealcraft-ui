@@ -48,10 +48,10 @@ const columns = [
                 value={value || ''}
                 onChange={(e) => {
                     const newValue = e.target.value;
-                    row.original[column.id] = newValue; // Update the original row value
+                    row.original[column.id] = newValue;
                     row.setState((prev) => ({
                         ...prev,
-                        [column.id]: newValue // Ensure the change triggers re-render
+                        [column.id]: newValue
                     }));
                 }}
                 style={{ width: '100%' }}

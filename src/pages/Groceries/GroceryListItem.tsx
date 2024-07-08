@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { updateGrocery as updateGrocery } from "../../api";
-import { Grocery, GroceryStatus } from '../../Grocery';
+import { Grocery, GroceryStatus } from '../../Models';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { timeAgo, expirationSentence } from '../utilities';
-import { LocationNames } from '../../Grocery';
+import { LocationNames } from '../../Models';
 
 type GroceryListItemProps = {
   grocery: Grocery;
@@ -14,8 +14,6 @@ type GroceryListItemProps = {
 export const GroceryListItem: React.FC<GroceryListItemProps> = (props: GroceryListItemProps) => {
   const [status, setStatus] = useState<GroceryStatus>(props.grocery.status);
   const [statusDate, setStatusDate] = useState<Date | null>(props.grocery.statusDate || null);
-
-  console.log(`GroceryListItem ${props.grocery.name} location: ${LocationNames[props.grocery.location]}`);
 
   useEffect(() => {
     setStatus(props.grocery.status);

@@ -61,14 +61,20 @@ export interface Grocery {
 
 export interface Recipe {
   recipeId: string;
+  subRecipes: Recipe[];
   name: string;
   description: string;
   ingredients: RecipeIngredient[];
   instructions: string[];
 }
 
-// JOIN
 export interface RecipeIngredient {
+  ingredient: Grocery;
+  amount: number;
+  unit: string;
+}
+
+export interface RecipeIngredientDto {
   ingredientId: string;
   amount: number;
   unit: string;

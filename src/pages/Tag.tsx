@@ -12,7 +12,6 @@ export function Tag(props: TagProps) {
     const id = uuidv4();
 
     useEffect(() => {
-        console.log(`Tag ${props.name} selected: ${selected}`)
         props.onSelect(props.name, selected);
     }, [selected]);
 
