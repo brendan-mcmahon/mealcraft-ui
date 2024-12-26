@@ -19,6 +19,7 @@
   --cool-yellow: #f7b733;
   --cool-grey: #dfdce3;
   --cool-green: #00a632;
+  --cool-black: #2a2a2a;
 
   --primary-font: "Edu SA Beginner", sans-serif;
   height: 100vh;
@@ -34,7 +35,7 @@
 // blue: #81a9ae
 
 body {
-  background-color: #2a2a2a;
+  background-color: var(--cool-black);
   color: var(--cool-grey); /* dark gray text color */
   font-family: var(--primary-font);
   margin: 0;
@@ -99,7 +100,7 @@ button {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     max-height: 200px;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 4;
 
     .multiselect-option {
       padding: 5px 10px;

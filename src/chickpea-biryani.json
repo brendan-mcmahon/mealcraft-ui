@@ -1,0 +1,193 @@
+{
+	"id": "1029723878873333761",
+	"name": "Chickpea Biryani",
+	"description": "Aromatic, delicious and spicy one-pot biryani made with basmati rice, spices, chickpeas, and herbs.",
+	"ingredients": [
+		{
+			"recipeingredientid": "1032030938152173569",
+			"groceryid": "1029600337226792961",
+			"id": "1032030938152173569",
+			"name": "Ghee",
+			"statusdate": "2024-12-08T15:37:47.656Z",
+			"expirationdate": null,
+			"type": "0",
+			"location": "0",
+			"status": "0",
+			"recipeid": "1029723878873333761",
+			"amount": "3",
+			"unit": "tbsp"
+		},
+		{
+			"recipeingredientid": "1032030938217447425",
+			"groceryid": "1029600344305041409",
+			"id": "1032030938217447425",
+			"name": "Basmati Rice",
+			"statusdate": "2024-12-11T05:45:05.958Z",
+			"expirationdate": null,
+			"type": "0",
+			"location": "0",
+			"status": "2",
+			"recipeid": "1029723878873333761",
+			"amount": "2",
+			"unit": "cups"
+		},
+		{
+			"recipeingredientid": "1032030938276462593",
+			"groceryid": "1029600376067817473",
+			"id": "1032030938276462593",
+			"name": "Garbanzo Beans",
+			"statusdate": "2024-12-08T15:37:38.805Z",
+			"expirationdate": null,
+			"type": "0",
+			"location": "0",
+			"status": "0",
+			"recipeid": "1029723878873333761",
+			"amount": "2",
+			"unit": "cans"
+		},
+		{
+			"groceryid": "1029600343976542209",
+			"name": "Greek Yogurt",
+			"amount": 1,
+			"unit": "cup"
+		},
+		{
+			"groceryid": "1029600342679355393",
+			"name": "Yellow Onion",
+			"amount": 1,
+			"unit": "large"
+		},
+		{
+			"groceryid": "1029600360944271361",
+			"name": "Jalapeno",
+			"amount": 1,
+			"unit": "pepper"
+		},
+		{
+			"groceryid": "1029600349651533825",
+			"name": "Turmeric",
+			"amount": 0.25,
+			"unit": "tspn"
+		},
+		{
+			"groceryid": "1029600340625948673",
+			"name": "Chili Powder",
+			"amount": 1,
+			"unit": "tsp"
+		},
+		{
+			"groceryid": "1029600359417315329",
+			"name": "Garam Masala",
+			"amount": 0.25,
+			"unit": "cups"
+		},
+		{
+			"groceryid": "1029600341949710337",
+			"name": "Lemon Juice",
+			"amount": 1,
+			"unit": "tbsp"
+		},
+		{
+			"groceryid": "1029600354357248001",
+			"name": "Bay Leaf",
+			"amount": 1,
+			"unit": "leaf"
+		},
+		{
+			"groceryid": "1029600369769086977",
+			"name": "Green Cardamom",
+			"amount": 12,
+			"unit": "pods"
+		},
+		{
+			"groceryid": "1029600344542806017",
+			"name": "Cloves",
+			"amount": 18,
+			"unit": "pieces"
+		},
+		{
+			"groceryid": "1029600345014239233",
+			"name": "Cinnamon Sticks",
+			"amount": 3,
+			"unit": "inches"
+		},
+		{
+			"groceryid": "1029600360123695105",
+			"name": "Star Anise",
+			"amount": 3,
+			"unit": "pods"
+		},
+		{
+			"groceryid": "1029600354600189953",
+			"name": "Caraway Seeds",
+			"amount": 2,
+			"unit": "tsp"
+		},
+		{
+			"groceryid": "1029600377068453889",
+			"name": "Mace",
+			"amount": 3,
+			"unit": "strands"
+		},
+		{
+			"groceryid": "1029600358931300353",
+			"name": "Mint Leaves",
+			"amount": 0.5,
+			"unit": "cups"
+		}
+	],
+	"instructions": [
+		{
+			"text": "For the marinade, add yogurt, ginger garlic paste, garam masala, turmeric, lemon juice, and chili powder to a bag.",
+			"stepnumber": 1
+		},
+		{
+			"text": "Add the chickpeas and mix well. Refrigerate overnight.",
+			"stepnumber": 2
+		},
+		{
+			"text": "Rinse the basmati rice 3 times and let it soak for 30 minutes.",
+			"stepnumber": 3
+		},
+		{
+			"text": "Heat ghee in a Dutch Oven.",
+			"stepnumber": 4
+		},
+		{
+			"text": "Add spices (Bay leaf, cardamom, cloves, cinnamon, star anise, shahi jeera, and mace) until fragrant.",
+			"stepnumber": 5
+		},
+		{
+			"text": "Add onions, stirring evenly until light brown.",
+			"stepnumber": 6
+		},
+		{
+			"text": "Add the chickpeas and sauté for about 5 minutes.",
+			"stepnumber": 7
+		},
+		{
+			"text": "Cover and cook on low for like 10 minutes maybe? (I haven't figured this part out with chickpeas instead of chicken yet. Normally, you'd be cooking chicken so you'd cook until it was finished.)",
+			"stepnumber": 8
+		},
+		{
+			"text": "Add yogurt, mint leaves, jalapeno, chili powder, and garam masala",
+			"stepnumber": 9
+		},
+		{
+			"text": "Mix everything well.",
+			"stepnumber": 10
+		},
+		{
+			"text": "Spread the drained rice over the chickpeas.",
+			"stepnumber": 11
+		},
+		{
+			"text": "Add water until you have about a half inch of water covering the rice. Pour gently as to not disturb the rice layer on top.",
+			"stepnumber": 12
+		},
+		{
+			"text": "Cover and cook until the rice is tender. If this takes longer than 30 minutes, stir it a bit to avoid burning the chickpeas at the bottom of the pot.",
+			"stepnumber": 13
+		}
+	]
+}
