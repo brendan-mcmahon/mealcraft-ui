@@ -14,9 +14,9 @@ import DataPage from './pages/DataPage.jsx'
 import './App.scss'
 import WeekPage from './pages/WeekPage.jsx'
 import { useState, useEffect } from 'react'
-import groceriesIcon from './assets/groceries.svg';
-import stockIcon from './assets/stock.svg';
-import recipesIcon from './assets/recipe.svg';
+import groceriesIcon from './assets/apple.svg';
+import stockIcon from './assets/clipboard.svg';
+import recipesIcon from './assets/hat.svg';
 import weekIcon from './assets/week.svg';
 
 const buildTime = import.meta.env.VITE_BUILD_TIME

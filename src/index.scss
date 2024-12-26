@@ -1,28 +1,28 @@
 @font-face {
-  font-family: "Chalk";
-  src: url("./assets/fonts/Chalk Board.ttf");
+	font-family: "Chalk";
+	src: url("./assets/fonts/Chalk Board.ttf");
 }
 
 @font-face {
-  font-family: "WildySans";
-  src: url("./assets/fonts/Orion Chalk Solid Demo Version.otf");
-  font-weight: bold;
-  font-style: italic;
+	font-family: "WildySans";
+	src: url("./assets/fonts/Orion Chalk Solid Demo Version.otf");
+	font-weight: bold;
+	font-style: italic;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;700&display=swap");
 
 :root {
-  // baloon-dog
-  --cool-blue: #4abdac;
-  --cool-red: #fc4a1a;
-  --cool-yellow: #f7b733;
-  --cool-grey: #dfdce3;
-  --cool-green: #00a632;
-  --cool-black: #2a2a2a;
+	// baloon-dog
+	--cool-blue: #4abdac;
+	--cool-red: #fc4a1a;
+	--cool-yellow: #f7b733;
+	--cool-grey: #dfdce3;
+	--cool-green: #00D13F;
+	--cool-black: #2a2a2a;
 
-  --primary-font: "Edu SA Beginner", sans-serif;
-  height: 100vh;
+	--primary-font: "Edu SA Beginner", sans-serif;
+	height: 100vh;
 }
 
 // other colors:
@@ -35,84 +35,85 @@
 // blue: #81a9ae
 
 body {
-  background-color: var(--cool-black);
-  color: var(--cool-grey); /* dark gray text color */
-  font-family: var(--primary-font);
-  margin: 0;
-  height: 100vh;
+	background-color: var(--cool-black);
+	color: var(--cool-grey);
+	/* dark gray text color */
+	font-family: var(--primary-font);
+	margin: 0;
+	height: 100vh;
 
-  #root {
-    height: 100%;
-  }
+	#root {
+		height: 100%;
+	}
 }
 
 h1,
 h2,
 a {
-  color: var(--cool-grey);
-  font-family: var(--primary-font);
-  margin: 0;
+	color: var(--cool-grey);
+	font-family: var(--primary-font);
+	margin: 0;
 }
 
 button {
-  font-family: var(--primary-font);
+	font-family: var(--primary-font);
 }
 
 .button-primary {
-  background-color: var(--cool-red);
-  font-family: var(--primary-font);
-  color: #fff;
+	background-color: var(--cool-red);
+	font-family: var(--primary-font);
+	color: #fff;
 }
 
 .button-secondary {
-  background-color: var(--cool-yellow);
-  font-family: var(--primary-font);
-  color: #fff;
+	background-color: var(--cool-yellow);
+	font-family: var(--primary-font);
+	color: #fff;
 }
 
 .navbar {
-  background-color: var(--cool-blue);
-  color: #fff;
+	background-color: var(--cool-blue);
+	color: #fff;
 }
 
 .icon-button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .multiselect-container {
-  position: relative;
-  width: 200px;
+	position: relative;
+	width: 200px;
 
-  .multiselect-label {
-    padding: 10px;
-    background: 2a2a2a; // TODO: This looks bad
-    border: solid var(--cool-green) 2px;
-    color: #fff;
-    cursor: pointer;
-  }
+	.multiselect-label {
+		padding: 10px;
+		background: 2a2a2a; // TODO: This looks bad
+		border: solid var(--cool-green) 2px;
+		color: #fff;
+		cursor: pointer;
+	}
 
-  .multiselect-options {
-    position: absolute;
-    width: 100%;
-    background: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 4;
+	.multiselect-options {
+		position: absolute;
+		width: 100%;
+		background: white;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+		max-height: 200px;
+		overflow-y: auto;
+		z-index: 4;
 
-    .multiselect-option {
-      padding: 5px 10px;
-      margin: 2px 0;
-      background: #fff;
-      color: #000;
-      cursor: pointer;
+		.multiselect-option {
+			padding: 5px 10px;
+			margin: 2px 0;
+			background: #fff;
+			color: #000;
+			cursor: pointer;
 
-      &.selected {
-        background: #007bff;
-        color: #fff;
-      }
-    }
-  }
+			&.selected {
+				background: #007bff;
+				color: #fff;
+			}
+		}
+	}
 }
