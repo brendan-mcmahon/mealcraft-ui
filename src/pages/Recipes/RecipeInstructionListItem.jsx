@@ -6,15 +6,18 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 const RecipeInstructionListItem = ({ instruction, editMode, removeInstruction, id }) => {
-	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id, disabled: !editMode });
+	const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled: !editMode });
 	const [isChecked, setIsChecked] = useState(false);
 
 	const style = {
-		transform: CSS.Transform.toString(transform) || 'none',
+		transform: CSS.Translate.toString(transform) || 'none',
 		transition: transition || 'none',
+		touchAction: 'none', // Prevent gestures interfering during drag
 		textDecoration: isChecked ? 'line-through' : 'none',
 		padding: '8px',
 		boxSizing: 'border-box',
+		outline: isDragging ? '2px dotted #007BFF' : 'none', // Dotted outline while dragging
+		opacity: isDragging ? 0.8 : 1, // Optional: Slight fade effect when dragging
 	};
 
 	return (
