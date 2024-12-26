@@ -1,22 +1,33 @@
-import { DndContext, closestCenter } from '@dnd-kit/core';
+import { PointerSensor, useSensor, useSensors, DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import RecipeInstructionListItem from './RecipeInstructionListItem';
 
 const RecipeInstructions = ({ instructions, setInstructions, editMode, removeInstruction }) => {
+	const sensors = useSensors(
+		useSensor(PointerSensor, {
+			activationConstraint: {
+				delay: 250, // this is a long press delay
+				tolerance: 5,
+			},
+		})
+	);
+
 	const handleDragEnd = (event) => {
 		const { active, over } = event;
 		if (active.id !== over.id) {
-			setInstructions((items) => {
-				const oldIndex = items.findIndex(item => item.text === active.id);
-				const newIndex = items.findIndex(item => item.text === over.id);
-				const newOrder = arrayMove(items, oldIndex, newIndex).map(i => i.text);
-				return newOrder; // Only return IDs in order
-			});
+			const oldIndex = instructions.findIndex(item => item.text === active.id);
+			const newIndex = instructions.findIndex(item => item.text === over.id);
+			const newOrder = arrayMove(instructions, oldIndex, newIndex).map(i => i.text);
+			setInstructions(newOrder);
 		}
 	};
 
 	return (
-		<DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+		<DndContext
+			sensors={sensors}
+			collisionDetection={closestCenter}
+			onDragEnd={handleDragEnd}
+		>
 			<SortableContext items={instructions.map(i => i.text)} strategy={verticalListSortingStrategy}>
 				<ol style={{ padding: 0 }}>
 					{instructions.map((instruction) => (
@@ -33,5 +44,6 @@ const RecipeInstructions = ({ instructions, setInstructions, editMode, removeIns
 		</DndContext>
 	);
 };
+
 
 export default RecipeInstructions;

@@ -82,11 +82,12 @@ const RecipePage = () => {
 	}
 
 	const setInstructionsOrder = (newOrder) => {
+		console.log("setting instructions order", newOrder);
 		setRecipe(oldRecipe => ({
 			...oldRecipe,
 			instructions: newOrder.map((text, index) => ({
-				...oldRecipe.instructions.find(i => i.text === text), // Find the original instruction
-				stepnumber: index + 1 // Update step numbers
+				...oldRecipe.instructions.find(i => i.text === text),
+				stepnumber: index + 1
 			}))
 		}));
 	};

@@ -6,7 +6,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 const RecipeInstructionListItem = ({ instruction, editMode, removeInstruction, id }) => {
-	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id, disabled: !editMode });
 	const [isChecked, setIsChecked] = useState(false);
 
 	const style = {
@@ -15,8 +15,6 @@ const RecipeInstructionListItem = ({ instruction, editMode, removeInstruction, i
 		textDecoration: isChecked ? 'line-through' : 'none',
 		padding: '8px',
 		boxSizing: 'border-box',
-		border: '1px dashed red', // Debug border
-		backgroundColor: transform ? 'lightblue' : 'transparent', // Highlight dragging
 	};
 
 	return (
