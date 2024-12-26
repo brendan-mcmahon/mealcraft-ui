@@ -28,6 +28,7 @@ nav {
 	a {
 		text-decoration: none;
 		padding: 8px;
+		color: var(--cool-black);
 		// border-radius: 100px;
 
 		&:has(img) {
@@ -49,8 +50,9 @@ nav {
 			// background-color: var(--cool-grey);
 			// color: var(--cool-green);
 			border: solid var(--cool-black) 2px;
+			background-color: #ffffff;
 			border-radius: 8px;
-			box-shadow: black 0px 0 6px;
+			// box-shadow: black 0px 0 6px;
 		}
 	}
 }

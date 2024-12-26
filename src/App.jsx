@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react'
 import groceriesIcon from './assets/apple.svg';
 import stockIcon from './assets/clipboard.svg';
 import recipesIcon from './assets/hat.svg';
-import weekIcon from './assets/week.svg';
+import weekIcon from './assets/calendar.svg';
 
 const buildTime = import.meta.env.VITE_BUILD_TIME
 
