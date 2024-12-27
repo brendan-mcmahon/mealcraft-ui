@@ -136,3 +136,10 @@ option {
 	font-size: 24px;
 	padding: 4px;
 }
+
+.add-button {
+	font-size: 2rem;
+	align-self: flex-start;
+	cursor: pointer;
+	color: var(--cool-green);
+}

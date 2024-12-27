@@ -156,6 +156,7 @@ const RecipePage = () => {
 			</div>}
 			<h2 className="section-title">Ingredients</h2>
 			<div className="ingredients recipe-list">
+				{editMode && recipe.ingredients.length === 0 && <p>Click the green plus button to add ingredients!</p>}
 				<RecipeIngredients
 					ingredients={recipe.ingredients}
 					setIngredients={setIngredientsOrder}
@@ -167,6 +168,7 @@ const RecipePage = () => {
 
 			<h2 className="section-title">Instructions</h2>
 			<div className="instructions recipe-list">
+				{editMode && recipe.instructions.length === 0 && <p>Click the green plus button to add instructions!</p>}
 				<RecipeInstructions
 					instructions={recipe.instructions}
 					editMode={editMode}

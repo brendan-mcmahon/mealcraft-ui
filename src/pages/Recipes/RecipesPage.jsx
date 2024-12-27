@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getAllRecipes } from '../../api';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './RecipesPage.scss';
 
 export default function RecipesPage() {
@@ -24,14 +26,14 @@ export default function RecipesPage() {
 	}
 
 	return (
-		<div>
+		<div className="recipes-page">
 			<h1 className="page-title">Recipes</h1>
 			<ul className="recipes-list">
 				{recipes.map((recipe) => (
 					<NavLink key={recipe.id} to={`/recipe?id=${recipe.id}`}>{recipe.name}</NavLink>
 				))}
 			</ul>
-			{/* <Link to="/recipe-builder">New Recipe</Link> */}
+			<Link className="add-button" to="/recipe"><FontAwesomeIcon icon={faPlusCircle} /></Link>
 		</div>
 	);
 }

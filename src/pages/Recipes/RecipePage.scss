@@ -78,14 +78,6 @@
 		}
 	}
 
-
-	.add-button {
-		font-size: 2rem;
-		align-self: flex-start;
-		cursor: pointer;
-		color: var(--cool-green);
-	}
-
 	.recipe-list {
 		max-height: 50vh;
 		overflow-y: auto;
@@ -106,6 +98,14 @@
 		ul {
 			padding: 0;
 			list-style-type: none;
+		}
+
+		ol {
+			list-style-type: none;
+		}
+
+		.add-button {
+			margin-bottom: 12px;
 		}
 	}
 
