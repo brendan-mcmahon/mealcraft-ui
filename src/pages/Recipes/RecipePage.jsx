@@ -16,8 +16,8 @@ const RecipePage = () => {
 
 	const [recipe, setRecipe] = useState({
 		recipeId: '',
-		name: '',
-		description: '',
+		name: 'Enter recipe name',
+		description: 'Enter recipe description',
 		ingredients: [],
 		instructions: []
 	});
@@ -99,20 +99,22 @@ const RecipePage = () => {
 
 	useEffect(() => {
 		if (!id) {
-			setError(true);
-			return;
+			setIsLoading(false);
+			setError(false);
+			setEditMode(true);
+		} else {
+			getRecipe(id)
+				.then(data => {
+					setRecipe(data);
+					setIsLoading(false);
+					setError(false);
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					setIsLoading(false);
+					setError(true);
+				});
 		}
-		getRecipe(id)
-			.then(data => {
-				setRecipe(data);
-				setIsLoading(false);
-				setError(false);
-			})
-			.catch(error => {
-				console.error('Error:', error);
-				setIsLoading(false);
-				setError(true);
-			});
 	}, []);
 
 	const save = () => {
@@ -138,18 +140,22 @@ const RecipePage = () => {
 			<div className="header">
 				<div></div>
 				<div className="title">
-					<h1>{recipe.name}
-						{!editMode && <FontAwesomeIcon onClick={() => setEditMode(true)} icon={faPencil} />}
-					</h1>
-					<p className="description">{recipe.description}</p>
+					{!editMode && <h1>{recipe.name}
+						<FontAwesomeIcon onClick={() => setEditMode(true)} icon={faPencil} />
+					</h1>}
+
+					{editMode && <input type="text" value={recipe.name} onChange={(e) => setRecipe({ ...recipe, name: e.target.value })} />}
+
+					{!editMode && <p className="description">{recipe.description}</p>}
+					{editMode && <textarea value={recipe.description} onChange={(e) => setRecipe({ ...recipe, description: e.target.value })} />}
 				</div>
 			</div>
 			{editMode && <div className="edit-buttons">
 				<button onClick={() => setEditMode(false)}>Cancel</button>
 				<button onClick={save} >Save</button>
 			</div>}
-			<div className="ingredients">
-				<h2>Ingredients</h2>
+			<h2 className="section-title">Ingredients</h2>
+			<div className="ingredients recipe-list">
 				<RecipeIngredients
 					ingredients={recipe.ingredients}
 					setIngredients={setIngredientsOrder}
@@ -159,20 +165,14 @@ const RecipePage = () => {
 				{editMode && <FontAwesomeIcon className="add-button" onClick={() => setShowAddIngredientModal(true)} icon={faPlusCircle} />}
 			</div>
 
-			<div className="instructions">
-				<h2>Instructions</h2>
+			<h2 className="section-title">Instructions</h2>
+			<div className="instructions recipe-list">
 				<RecipeInstructions
 					instructions={recipe.instructions}
 					editMode={editMode}
 					removeInstruction={removeInstruction}
 					setInstructions={setInstructionsOrder}
 				/>
-				{/*
-				<ol>
-					{recipe.instructions?.map((instruction, index) =>
-						<RecipeInstructionListItem key={index} instruction={instruction} editMode={editMode} removeInstruction={() => removeInstruction(instruction.text)} />
-					)}
-				</ol> */}
 				{editMode && <FontAwesomeIcon className="add-button" onClick={() => setShowAddInstructionModal(true)} icon={faPlusCircle} />}
 			</div>
 		</div>

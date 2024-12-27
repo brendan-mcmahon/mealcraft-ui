@@ -24,6 +24,33 @@
 				}
 			}
 
+			input[type="text"] {
+				font-size: 2rem;
+				font-weight: bold;
+				margin: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: none;
+				background-color: transparent;
+				text-align: center;
+				color: var(--cool-grey);
+				padding: 20px;
+				margin: 8px;
+				font-family: var(--primary-font);
+			}
+
+			textarea {
+				font-size: 1rem;
+				background-color: transparent;
+				width: 100%;
+				outline: none;
+				color: var(--cool-grey);
+				height: 100px;
+				resize: none;
+				width: 100%;
+			}
+
 			.description {
 				font-size: 1rem;
 				font-style: italic;
@@ -33,9 +60,17 @@
 
 	}
 
+	.section-title {
+		font-size: 2rem;
+		margin: 0;
+		align-self: flex-start;
+		margin-top: 2rem;
+	}
+
 	.edit-buttons {
 		position: fixed;
 		right: 20px;
+		bottom: 20px;
 
 		button {
 			font-size: 1.5rem;
@@ -51,11 +86,13 @@
 		color: var(--cool-green);
 	}
 
-	.ingredients {
+	.recipe-list {
+		max-height: 50vh;
+		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
-		margin: 20px 0;
-		padding: 20px;
+		margin: 0;
+		padding: 0 12px;
 		border: 1px solid var(--cool-grey);
 		border-radius: 10px;
 		align-self: stretch;
@@ -72,50 +109,6 @@
 		}
 	}
 
-	.instructions {
-		display: flex;
-		flex-direction: column;
-		margin: 20px 0;
-		padding: 20px;
-		border: 1px solid var(--cool-grey);
-		border-radius: 10px;
-		align-self: stretch;
-
-		h2 {
-			font-size: 1.5rem;
-			font-weight: bold;
-			margin: 0;
-
-
-		}
-
-		ul,
-		ol {
-			padding: 0;
-			list-style-type: none;
-		}
-
-		.instruction-container {
-			font-size: 1rem;
-			margin: 0;
-			display: flex;
-			font-size: 1.5rem;
-
-			.instruction {
-				display: grid;
-				grid-gap: 8px;
-				grid-template-columns: 30px 1fr;
-				margin-bottom: 2rem;
-
-				.checkbox-wrapper {
-					margin-right: 8px;
-				}
-
-			}
-
-		}
-	}
-
 	.list-item-container {
 		font-size: 1rem;
 		margin: 0;
@@ -125,7 +118,7 @@
 
 		.list-item {
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			width: 100%;
 
 			.checkbox-wrapper {

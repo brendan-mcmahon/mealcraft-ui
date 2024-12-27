@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAllRecipes } from '../../api';
 import { NavLink } from 'react-router-dom';
+import './RecipesPage.scss';
 
 export default function RecipesPage() {
 	const [recipes, setRecipes] = useState([]);
@@ -25,7 +26,7 @@ export default function RecipesPage() {
 	return (
 		<div>
 			<h1 className="page-title">Recipes</h1>
-			<ul>
+			<ul className="recipes-list">
 				{recipes.map((recipe) => (
 					<NavLink key={recipe.id} to={`/recipe?id=${recipe.id}`}>{recipe.name}</NavLink>
 				))}

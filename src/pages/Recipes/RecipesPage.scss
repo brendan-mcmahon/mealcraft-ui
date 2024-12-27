@@ -1,0 +1,15 @@
+.recipes-list {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	width: 90%;
+	margin: 0 auto;
+
+	a {
+		text-decoration: none;
+		font-size: 1.5rem;
+		border: solid 2px var(--cool-grey);
+		border-radius: 8px;
+		padding: 8px;
+	}
+}

@@ -29,6 +29,7 @@ const AddIngredientModal = (props) => {
 		e.preventDefault();
 		if (!selectedIngredient) return;
 		const ingredientEntity = {
+			id: selectedIngredient.value.id,
 			groceryid: selectedIngredient.value.id,
 			name: selectedIngredient.value.name,
 			amount: quantity,
