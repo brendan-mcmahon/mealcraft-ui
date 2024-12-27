@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Loading from '../../Loading';
-import { getAllGroceries } from '../../api';
-import { GroceryType } from '../../models/Models';
-import Modal from '../../Modal';
+import Loading from '../../../Loading';
+import { getAllGroceries } from '../../../api';
+import { GroceryType } from '../../../models/Models';
+import Modal from '../../../Modal';
 import Select from 'react-select';
 
 const AddIngredientModal = (props) => {
@@ -28,14 +28,12 @@ const AddIngredientModal = (props) => {
 	const handleSave = (e) => {
 		e.preventDefault();
 		if (!selectedIngredient) return;
-		console.log("selectedIngredient", selectedIngredient.value);
 		const ingredientEntity = {
 			groceryid: selectedIngredient.value.id,
 			name: selectedIngredient.value.name,
 			amount: quantity,
 			unit: unit
 		};
-		console.log("ingredientEntity", ingredientEntity);
 		props.handleAddIngredient(ingredientEntity);
 
 		setSelectedIngredient(null);

@@ -1,5 +1,5 @@
 # General
-  - [ ] Favicon for PWA
+  - [x] Favicon for PWA
 
 # Groceries
 - [ ] Desktop-friendly version
@@ -16,15 +16,14 @@
 - [ ] At the bottom, a button to set the status of all checked items to "plenty"
 
 # Stock
-- [ ] Group by location (pantry, fridge, laundry room, etc)
+- [x] Group by location (pantry, fridge, laundry room, etc)
   
 # Recipes
 - [ ] Loading state
 - [ ] Styling
-  - [ ] Desktop-friendly version
-  - [x] Logo
 - [ ] Add Ingredient modal??? Should this be a modal or just on the page?
 - [ ] Need a quick way to add new ingredients that don't exist
+- [ ] Collapsible ingredient and instruction sections
 
 * Structure of a recipe:
   * Id

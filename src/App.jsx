@@ -30,8 +30,6 @@ const navLinks = [
 ]
 
 const App = () => {
-
-	console.log(import.meta.env.VITE_API_URL);
 	const [isMobile, setIsMobile] = useState(window.matchMedia('(max-width: 600px)').matches);
 
 	useEffect(() => {

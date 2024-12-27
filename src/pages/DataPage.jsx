@@ -40,9 +40,6 @@ const columns = [
 		Header: 'Location',
 		accessor: 'location',
 		Cell: ({ value, row, column }) => {
-			console.log('value', value);
-			console.log('row', row);
-			console.log('column', column);
 			return (
 				<select
 					value={value || ''}

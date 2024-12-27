@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getRecipe, updateRecipe } from '../../api';
-import RecipeIngredientListItem from './RecipeIngredientListItem';
+import RecipeIngredients from './Ingredients/RecipeIngredients';
 import './RecipePage.scss';
-// import RecipeInstructionListItem from './RecipeInstructionListItem';
-import RecipeInstructions from './RecipeInstructions';
-import AddIngredientModal from './AddIngredientModal';
+import RecipeInstructions from './Instructions/RecipeInstructions';
+import AddIngredientModal from './Ingredients/AddIngredientModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import AddInstructionModal from './AddInstructionModal';
+import AddInstructionModal from './Instructions/AddInstructionModal';
 
 const RecipePage = () => {
 	const location = useLocation();
@@ -45,7 +44,6 @@ const RecipePage = () => {
 	}
 
 	const addInstruction = (instruction) => {
-		console.log("adding instruction")
 		setRecipe(oldRecipe => {
 			if (!oldRecipe.instructions) {
 				oldRecipe.instructions = [];
@@ -82,13 +80,19 @@ const RecipePage = () => {
 	}
 
 	const setInstructionsOrder = (newOrder) => {
-		console.log("setting instructions order", newOrder);
 		setRecipe(oldRecipe => ({
 			...oldRecipe,
 			instructions: newOrder.map((text, index) => ({
 				...oldRecipe.instructions.find(i => i.text === text),
 				stepnumber: index + 1
 			}))
+		}));
+	};
+
+	const setIngredientsOrder = (newOrder) => {
+		setRecipe(oldRecipe => ({
+			...oldRecipe,
+			ingredients: newOrder.map(id => oldRecipe.ingredients.find(i => i.id === id))
 		}));
 	};
 
@@ -100,9 +104,7 @@ const RecipePage = () => {
 		}
 		getRecipe(id)
 			.then(data => {
-				console.log(data);
 				setRecipe(data);
-				console.log("setting isLoading to false");
 				setIsLoading(false);
 				setError(false);
 			})
@@ -114,10 +116,8 @@ const RecipePage = () => {
 	}, []);
 
 	const save = () => {
-		console.log("saving recipe", recipe);
 		updateRecipe(recipe)
-			.then(data => {
-				console.log(data);
+			.then(() => {
 				setEditMode(false);
 			})
 			.catch(error => {
@@ -135,39 +135,46 @@ const RecipePage = () => {
 
 	return (<>
 		<div id="Recipe">
-			<h1 className="title">{recipe.name}
-				{!editMode && <FontAwesomeIcon onClick={() => setEditMode(true)} icon={faPencil} />}
-			</h1>
-			<p className="description">{recipe.description}</p>
+			<div className="header">
+				<div></div>
+				<div className="title">
+					<h1>{recipe.name}
+						{!editMode && <FontAwesomeIcon onClick={() => setEditMode(true)} icon={faPencil} />}
+					</h1>
+					<p className="description">{recipe.description}</p>
+				</div>
+			</div>
+			{editMode && <div className="edit-buttons">
+				<button onClick={() => setEditMode(false)}>Cancel</button>
+				<button onClick={save} >Save</button>
+			</div>}
 			<div className="ingredients">
 				<h2>Ingredients</h2>
-				<ul>
-					{recipe.ingredients?.map((ingredient, index) =>
-						<RecipeIngredientListItem key={index} ingredient={ingredient} editMode={editMode} removeIngredient={() => removeIngredient(ingredient.id)} />
-					)}
-				</ul>
+				<RecipeIngredients
+					ingredients={recipe.ingredients}
+					setIngredients={setIngredientsOrder}
+					editMode={editMode}
+					removeIngredient={removeIngredient}
+				/>
 				{editMode && <FontAwesomeIcon className="add-button" onClick={() => setShowAddIngredientModal(true)} icon={faPlusCircle} />}
 			</div>
 
 			<div className="instructions">
+				<h2>Instructions</h2>
 				<RecipeInstructions
 					instructions={recipe.instructions}
 					editMode={editMode}
 					removeInstruction={removeInstruction}
 					setInstructions={setInstructionsOrder}
 				/>
-				{/* <h2>Instructions</h2>
+				{/*
 				<ol>
 					{recipe.instructions?.map((instruction, index) =>
 						<RecipeInstructionListItem key={index} instruction={instruction} editMode={editMode} removeInstruction={() => removeInstruction(instruction.text)} />
 					)}
-				</ol>
-				{editMode && <FontAwesomeIcon className="add-button" onClick={() => setShowAddInstructionModal(true)} icon={faPlusCircle} />} */}
+				</ol> */}
+				{editMode && <FontAwesomeIcon className="add-button" onClick={() => setShowAddInstructionModal(true)} icon={faPlusCircle} />}
 			</div>
-			{editMode && <div className="edit-buttons">
-				<button onClick={() => setEditMode(false)}>Cancel</button>
-				<button onClick={save} >Save</button>
-			</div>}
 		</div>
 		<AddIngredientModal
 			handleAddIngredient={addIngredient}

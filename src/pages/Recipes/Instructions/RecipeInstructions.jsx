@@ -3,7 +3,6 @@ import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-ki
 import RecipeInstructionListItem from './RecipeInstructionListItem';
 
 const RecipeInstructions = ({ instructions, setInstructions, editMode, removeInstruction }) => {
-	// how can I tell if I'm on mobile?
 	const isMobile = window.innerWidth <= 768;
 	const sensors = useSensors(
 		useSensor(PointerSensor, {

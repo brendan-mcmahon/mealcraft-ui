@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Checkbox from '../../Checkbox';
+import Checkbox from '../../../Checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useSortable } from '@dnd-kit/sortable';
@@ -12,12 +12,12 @@ const RecipeInstructionListItem = ({ instruction, editMode, removeInstruction, i
 	const style = {
 		transform: CSS.Translate.toString(transform) || 'none',
 		transition: transition || 'none',
-		touchAction: 'none', // Prevent gestures interfering during drag
+		touchAction: 'none',
 		textDecoration: isChecked ? 'line-through' : 'none',
 		padding: '8px',
 		boxSizing: 'border-box',
-		outline: isDragging ? '2px dotted #007BFF' : 'none', // Dotted outline while dragging
-		opacity: isDragging ? 0.8 : 1, // Optional: Slight fade effect when dragging
+		outline: isDragging ? '2px dotted #007BFF' : 'none',
+		opacity: isDragging ? 0.8 : 1,
 	};
 
 	return (

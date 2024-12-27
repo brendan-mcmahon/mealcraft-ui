@@ -4,25 +4,45 @@
 	align-items: center;
 	padding: 20px;
 
-	.title {
-		font-size: 2rem;
-		font-weight: bold;
-		margin: 0;
-		display: flex;
+	.header {
+		.title {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 
-		.fa-pencil {
-			cursor: pointer;
-			margin-left: 8px;
-			font-size: 16px;
-			transform: translateY(16px);
+			h1 {
+				font-size: 2rem;
+				font-weight: bold;
+				margin: 0;
+				display: flex;
+
+				.fa-pencil {
+					cursor: pointer;
+					margin-left: 8px;
+					font-size: 16px;
+					transform: translateY(16px);
+				}
+			}
+
+			.description {
+				font-size: 1rem;
+				font-style: italic;
+				margin: 0;
+			}
+		}
+
+	}
+
+	.edit-buttons {
+		position: fixed;
+		right: 20px;
+
+		button {
+			font-size: 1.5rem;
+			margin: 0 8px;
 		}
 	}
 
-	.description {
-		font-size: 1rem;
-		font-style: italic;
-		margin: 0;
-	}
 
 	.add-button {
 		font-size: 2rem;

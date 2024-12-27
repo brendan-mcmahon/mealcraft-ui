@@ -23,7 +23,6 @@ export function GroceryForm({ grocery, isOpen, onSaveComplete, handleCancel, onD
 	}, [isOpen]);
 
 	const addTag = (tag, checked) => {
-		console.log("this is adding tag...", tag, checked);
 		if (checked) {
 			setUpdatedGrocery({ ...updatedGrocery, tags: [...updatedGrocery.tags, tag] });
 		} else {
@@ -32,7 +31,6 @@ export function GroceryForm({ grocery, isOpen, onSaveComplete, handleCancel, onD
 	};
 
 	const handleSave = (e) => {
-		console.log("this is handling save...");
 		e.preventDefault();
 
 		setIsProcessing(true);
