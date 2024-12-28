@@ -9,8 +9,14 @@ const AddInstructionModal = (props) => {
 		if (!instruction) return;
 		props.handleAddInstruction(instruction);
 
-		setInstruction(null);
+		setInstruction("");
 		props.onClose();
+	};
+
+	const saveOnEnter = (e) => {
+		if (e.key === 'Enter') {
+			handleSave(e);
+		}
 	};
 
 	return (
@@ -21,10 +27,11 @@ const AddInstructionModal = (props) => {
 						type="number"
 						value={instruction}
 						onChange={(e) => setInstruction(e.target.value)}
+						onKeyDown={saveOnEnter}
 					/>
 				</div>
 
-				<button type="submit">Save</button>
+				<button type="submit">Add</button>
 			</form>
 		</Modal>
 	);

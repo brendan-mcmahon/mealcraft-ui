@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './RecipesPage.scss';
+import Loading from '../../Loading';
 
 export default function RecipesPage() {
 	const [recipes, setRecipes] = useState([]);
@@ -22,7 +23,7 @@ export default function RecipesPage() {
 	}, []);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <Loading message="Loading Recipes..." />;
 	}
 
 	return (

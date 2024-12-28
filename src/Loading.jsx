@@ -1,6 +1,6 @@
 import './Loading.scss'
 
-export default function Loading() {
+export default function Loading({ message }) {
 	return (
 		<div className="loading-state">
 			<svg
@@ -23,7 +23,7 @@ export default function Loading() {
 					/>
 				</g>
 			</svg>
-			<span>Loading Groceries...</span>
+			<span>{message || "Loading Groceries..."}</span>
 		</div>
 	)
 }

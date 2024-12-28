@@ -38,6 +38,8 @@ const AddIngredientModal = (props) => {
 		props.handleAddIngredient(ingredientEntity);
 
 		setSelectedIngredient(null);
+		setQuantity(1);
+		setUnit('unit');
 		props.onClose();
 	};
 
@@ -83,7 +85,7 @@ const AddIngredientModal = (props) => {
 					/>
 				</div>
 
-				<button type="submit">Save</button>
+				<button type="submit">Add</button>
 			</form>
 		</Modal>
 	);

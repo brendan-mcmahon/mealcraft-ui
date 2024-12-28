@@ -9,6 +9,11 @@
 - [x] When you click the plus button to add a new ingredient, copy the text from the current search if there is one
 - [ ] Add a filter for "last updated"
 - [ ] Add filter for "expired"
+- [ ] Nutrition info
+
+# Meal Planning
+- [ ] Button on each day to "add recipe"
+- [ ] Ability to clear recipes
 
 # Shop
 - [ ] Show shopping list for the week
@@ -19,11 +24,14 @@
 - [x] Group by location (pantry, fridge, laundry room, etc)
   
 # Recipes
-- [ ] Loading state
-- [ ] Styling
-- [ ] Add Ingredient modal??? Should this be a modal or just on the page?
+- [x] Loading state
+- [x] Styling
+- [x] Add Ingredient modal??? Should this be a modal or just on the page?
 - [ ] Need a quick way to add new ingredients that don't exist
 - [ ] Collapsible ingredient and instruction sections
+- [ ] Need a way to quickly be able to add recipes
+- [x] After adding an instruction, clear the text from the text area in the modal
+- [ ] Show fractions for units instead of decimals
 
 * Structure of a recipe:
   * Id
