@@ -13,22 +13,29 @@ export enum GroceryType {
 }
 
 export enum Location {
-	Pantry,
-	Refrigerator,
-	LaundryRoom,
-	KidsBathroom,
-	MasterBathroom,
-	Other,
-	Freezer,
-	Kitchen,
-	AboveMicrowave,
-	CheeseDrawer
+	Pantry, // 0
+	Refrigerator, // 1
+	LaundryRoom, // 2
+	KidsBathroom, // 3
+	MasterBathroom, // 4
+	Other, // 5
+	Freezer, // 6
+	Kitchen, // 7
+	AboveMicrowave, // 8
+	CheeseDrawer, // 9
+	Crisper, // 10
+	SpiceDrawer, // 11
+	CanBasket, // 12
+	SauceBasket, // 13
+	SnackDrawers, // 14
+	UnderSink, // 15
 }
 
 export const LocationNames = {
 	[Location.Pantry]: 'Pantry',
 	[Location.Refrigerator]: 'Fridge',
 	[Location.CheeseDrawer]: 'Cheese Drawer',
+	[Location.Crisper]: 'Crisper',
 	[Location.Freezer]: 'Freezer',
 	[Location.Other]: 'Other',
 	[Location.KidsBathroom]: 'Kids Bathroom',
@@ -36,13 +43,25 @@ export const LocationNames = {
 	[Location.LaundryRoom]: 'Laundry Room',
 	[Location.AboveMicrowave]: 'Above Microwave',
 	[Location.Kitchen]: 'Kitchen',
+	[Location.SpiceDrawer]: 'Spice Drawer',
+	[Location.CanBasket]: 'Can Basket',
+	[Location.SauceBasket]: 'Sauce Basket',
+	[Location.SnackDrawers]: 'Snack Drawers',
+	[Location.UnderSink]: 'Under Sink',
 };
 
 export const LocationSortOrder = [
 	Location.Pantry,
+	Location.CanBasket,
+	Location.SauceBasket,
+	Location.SpiceDrawer,
+	Location.SnackDrawers,
 	Location.Refrigerator,
+	Location.CheeseDrawer,
+	Location.Crisper,
 	Location.Freezer,
 	Location.Kitchen,
+	Location.UnderSink,
 	Location.AboveMicrowave,
 	Location.KidsBathroom,
 	Location.LaundryRoom,

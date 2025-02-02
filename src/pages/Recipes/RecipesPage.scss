@@ -26,4 +26,33 @@
 		margin: 1rem 1rem;
 		align-self: flex-end;
 	}
+
+
+}
+
+.add-recipe-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	border-radius: 10px;
+	color: var(--cool-black);
+
+	input {
+		font-size: 1.5rem;
+		padding: 8px;
+		margin: 8px;
+		border-radius: 8px;
+		border: solid 2px var(--cool-grey);
+	}
+
+	button {
+		font-size: 1.5rem;
+		padding: 8px;
+		margin: 8px;
+		border-radius: 8px;
+		border: solid 2px var(--cool-grey);
+		background-color: var(--cool-green);
+		color: var(--cool-black);
+	}
 }

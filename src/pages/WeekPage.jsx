@@ -22,8 +22,15 @@ export default function WeekPage() {
 		"Saturday"
 	]
 
+	const today = new Date();
+	const sunday = new Date(today.setDate(today.getDate() - today.getDay())).toLocaleDateString('en-US', {
+		month: 'short',
+		day: 'numeric'
+	});
+
 	return (
 		<div className="page">
+			<h1>Week of {sunday}</h1>
 			<div className="week">
 				{Array.from({ length: 7 }, (_, i) => (
 					<div key={i} className="day">

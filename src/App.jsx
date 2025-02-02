@@ -7,7 +7,6 @@ import {
 import GroceriesPage from './pages/Groceries/GroceriesPage.jsx'
 import RecipesPage from './pages/Recipes/RecipesPage.jsx'
 import RecipePage from './pages/Recipes/RecipePage.jsx'
-import RecipeBuilderPage from './pages/Recipes/RecipeBuilderPage.jsx'
 // import WeekPage from './pages/WeekPage'
 import StockPage from './pages/StockPage.jsx'
 import DataPage from './pages/DataPage.jsx'
@@ -63,7 +62,6 @@ const App = () => {
 				<Route path="/groceries" element={<GroceriesPage />}></Route>
 				<Route path="/recipes" element={<RecipesPage />}></Route>
 				<Route path="/stock" element={<StockPage />}></Route>
-				<Route path="/recipe-builder" element={<RecipeBuilderPage />}></Route>
 				<Route path="/data" element={<DataPage />}></Route>
 				<Route path="/week" element={<WeekPage />}></Route>
 				<Route path="/recipe" element={<RecipePage />} />

@@ -1,8 +1,4 @@
-# General
-  - [x] Favicon for PWA
-
 # Groceries
-- [ ] Desktop-friendly version
 - [ ] Go button for search to collapse the keyboard
 - [ ] Add ability to create new tags
 - [ ] Should the expiration date clear when the status goes to "out"? Yeah, I think so.
@@ -32,6 +28,7 @@
 - [ ] Need a way to quickly be able to add recipes
 - [x] After adding an instruction, clear the text from the text area in the modal
 - [ ] Show fractions for units instead of decimals
+- [ ] Deleting instructions isn't working?
 
 * Structure of a recipe:
   * Id

@@ -1,25 +1,32 @@
+.page {
+	padding: 2rem;
+}
+
 .week {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    .day {
-        display: grid;
-        grid-template-columns: 1fr;
+	.day {
+		display: grid;
+		grid-template-columns: 1fr;
 
-        grid-template-rows: 1rem auto;
-        grid-gap: 10px;
-        padding: 10px;
-        align-items: center;
-        border-bottom: 3px white solid;
-        width: 100%;
-        label {
-            font-size: 1rem;
-            font-weight: bold;
-            margin: 0;
-        }
-        p, a {
-            margin: 0;
-            font-size: 2rem;
-        }
-    }
+		grid-template-rows: 1rem auto;
+		grid-gap: 10px;
+		padding: 10px;
+		align-items: center;
+		border-bottom: 3px white solid;
+		width: 100%;
+
+		label {
+			font-size: 1rem;
+			font-weight: bold;
+			margin: 0;
+		}
+
+		p,
+		a {
+			margin: 0;
+			font-size: 2rem;
+		}
+	}
 }

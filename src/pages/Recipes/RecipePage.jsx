@@ -8,6 +8,7 @@ import AddIngredientModal from './Ingredients/AddIngredientModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import AddInstructionModal from './Instructions/AddInstructionModal';
+import Loading from '../../Loading';
 
 const RecipePage = () => {
 	const location = useLocation();
@@ -127,8 +128,8 @@ const RecipePage = () => {
 			});
 	}
 
-	if (isLoading || !recipe) {
-		return <div>Loading...</div>;
+	if (isLoading || !recipe || !recipe.ingredients || !recipe.instructions) {
+		return <Loading message="Loading Recipe..." />;
 	}
 
 	if (error) {

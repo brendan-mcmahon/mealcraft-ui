@@ -3,6 +3,8 @@ import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-ki
 import RecipeIngredientListItem from './RecipeIngredientListItem';
 
 const RecipeIngredients = ({ ingredients, setIngredients, editMode, removeIngredient }) => {
+	console.log('RecipeIngredients:', ingredients);
+
 	const isMobile = window.innerWidth <= 768;
 	const sensors = useSensors(
 		useSensor(PointerSensor, {
@@ -14,6 +16,7 @@ const RecipeIngredients = ({ ingredients, setIngredients, editMode, removeIngred
 	);
 
 	const handleDragEnd = (event) => {
+		console.log("handling drag end");
 		const { active, over } = event;
 		if (active.id !== over.id) {
 			const oldIndex = ingredients.findIndex(item => item.id === active.id);

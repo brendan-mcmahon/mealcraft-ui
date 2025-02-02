@@ -43,11 +43,9 @@ export function deleteGrocery(id) {
 }
 
 export function getRecipe(recipeId) {
-
-	console.log("getting recipe with id", recipeId);
 	return axios
 		.get(`${API_URL}/recipe?id=${recipeId}`)
-		.then((response) => { console.log(response); return response.data; })
+		.then((response) => response.data)
 		.catch((error) => {
 			throw error;
 		});
@@ -71,7 +69,6 @@ const mapGrocery = (grocery) => {
 }
 
 export function updateRecipe(recipe) {
-	console.log("updating recipe", recipe);
 	return axios
 		.put(`${API_URL}/recipe`, recipe)
 		.then((response) => response.data)
@@ -91,4 +88,15 @@ export function getAllTags() {
 
 export function updateGroceries() {
 	throw new Error('Not implemented');
+}
+
+export async function createRecipeFromUrl(url) {
+	const baseUrl = "https://dlrov3uqkcqqgili5r2gpcl3jq0vaekm.lambda-url.us-east-2.on.aws/";
+	try {
+		const response = await axios.post(baseUrl, { url });
+		return response.data;
+	} catch (error) {
+		console.error('Error:', error);
+		throw error;
+	}
 }

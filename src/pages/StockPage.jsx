@@ -23,13 +23,18 @@ export default function StockPage() {
 				const metaItems = data
 					.sort((a, b) => a.name.localeCompare(b.name))
 					.sort((a, b) => {
-						const locationA = LocationSortOrder.indexOf(a.location);
-						const locationB = LocationSortOrder.indexOf(b.location);
+						// const locationA = Location[parseInt(a.location)];
+						// const locationB = Location[parseInt(b.location)];
+						const locationSortOrderA = LocationSortOrder.indexOf(parseInt(a.location));
+						const locationSortOrderB = LocationSortOrder.indexOf(parseInt(b.location));
+						console.log(locationSortOrderA, locationSortOrderB);
 
-						if (locationA === locationB) {
+						if (locationSortOrderA === locationSortOrderB) {
+							// console.log("same:", a.name, b.name);
 							return a.name.localeCompare(b.name);
 						}
-						return locationA - locationB;
+						// console.log("diff:", a.name, b.name, locationSortOrderA, locationSortOrderB);
+						return locationSortOrderA - locationSortOrderB;
 					})
 					.map((item) => ({
 						inventoried: false,
