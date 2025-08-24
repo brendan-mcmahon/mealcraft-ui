@@ -7,7 +7,11 @@
       "Read(/C:\\code\\mealcraft-api/**)",
       "Read(/C:\\code\\mealcraft-api/**)",
       "Read(/C:\\code\\mealcraft-api/**)",
-      "Read(/C:\\code\\mealcraft-api/**)"
+      "Read(/C:\\code\\mealcraft-api/**)",
+      "Bash(npm install:*)",
+      "Bash(where convert)",
+      "Bash(where magick)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

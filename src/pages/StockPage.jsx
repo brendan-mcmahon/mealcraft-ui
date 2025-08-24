@@ -56,7 +56,7 @@ export default function StockPage() {
 
 		if (tagFilters.length > 0) {
 			newFilteredItems = newFilteredItems.filter((item) =>
-				tagFilters.every((filter) => item.item.tags.includes(filter))
+				tagFilters.every((filter) => item.item.tags.map(t => t.label).includes(filter))
 			);
 		}
 
