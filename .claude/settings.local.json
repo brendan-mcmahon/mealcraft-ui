@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\code\\mealcraft-api/**)",
+      "Read(/C:\\code\\mealcraft-api/**)",
+      "Read(/C:\\code\\mealcraft-api\\repositories/**)",
+      "Read(/C:\\code\\mealcraft-api/**)",
+      "Read(/C:\\code\\mealcraft-api/**)",
+      "Read(/C:\\code\\mealcraft-api/**)",
+      "Read(/C:\\code\\mealcraft-api/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

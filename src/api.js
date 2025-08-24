@@ -23,8 +23,18 @@ export function getAllGroceries() {
 export function saveGrocery(grocery) {
 	grocery.tags = [...new Set(grocery.tags)];
 
+	// Convert camelCase field names to lowercase for backend
+	const groceryForBackend = {
+		...grocery,
+		statusdate: grocery.statusDate,
+		expirationdate: grocery.expirationDate
+	};
+	// Remove the camelCase versions to avoid sending duplicate fields
+	delete groceryForBackend.statusDate;
+	delete groceryForBackend.expirationDate;
+
 	return axios
-		.post(`${API_URL}/grocery`, grocery)
+		.post(`${API_URL}/grocery`, groceryForBackend)
 		.then((response) => mapGrocery(response.data))
 		.catch((error) => {
 			throw error;
@@ -63,8 +73,8 @@ export function getAllRecipes() {
 const mapGrocery = (grocery) => {
 	return {
 		...grocery,
-		statusDate: grocery.statusDate ? new Date(grocery.statusDate) : null,
-		expirationDate: grocery.expirationDate ? new Date(grocery.expirationDate) : null,
+		statusDate: grocery.statusdate ? new Date(grocery.statusdate) : null,
+		expirationDate: grocery.expirationdate ? new Date(grocery.expirationdate) : null,
 	};
 }
 
